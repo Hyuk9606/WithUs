@@ -1,0 +1,105 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/windows,java,gradle,typo3
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,gradle,typo3
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+### Typo3 ###
+## TYPO3 v6.2
+# Ignore several upload and file directories.
+/fileadmin/user_upload/
+/fileadmin/_temp_/
+/fileadmin/_processed_/
+/uploads/
+# Ignore cache
+/typo3conf/temp_CACHED*
+/typo3conf/temp_fieldInfo.php
+/typo3conf/deprecation_*.log
+/typo3conf/ENABLE_INSTALL_TOOL
+/typo3conf/realurl_autoconf.php
+/FIRST_INSTALL
+# Ignore system folders, you should have them symlinked.
+# If not comment out the following entries.
+/typo3
+/typo3_src
+/typo3_src-*
+/Packages
+/.htaccess
+/index.php
+# Ignore temp directory.
+/typo3temp/
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+### Gradle ###
+.gradle
+**/build/
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache of project
+.gradletasknamecache
+
+# Eclipse Gradle plugin generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,java,gradle,typo3
