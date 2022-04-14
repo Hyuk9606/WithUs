@@ -95,9 +95,9 @@ public class AuthController {
 
         // expired access token 인지 확인
         Claims claims = authToken.getExpiredTokenClaims();
-        if (claims == null) {
-            return ApiResponse.notExpiredTokenYet();
-        }
+//        if (claims == null) {
+//            return ApiResponse.notExpiredTokenYet();
+//        }
 
         String userId = claims.getSubject();
         RoleType roleType = RoleType.of(claims.get("role", String.class));
@@ -108,7 +108,7 @@ public class AuthController {
                 .orElse((null));
         AuthToken authRefreshToken = tokenProvider.convertAuthToken(refreshToken);
 
-        if (authRefreshToken.validate()) {
+        if (!authRefreshToken.validate()) {
             return ApiResponse.invalidRefreshToken();
         }
 
