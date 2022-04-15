@@ -1,28 +1,32 @@
 import React from "react";
-import styled, { css } from 'styled-components'
+import styled from 'styled-components';
 
 const Container = styled.div`
-    height: 100px;
-    margin-top: auto;
-    background-color: #166678;
+    background-color: #303740;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    bottom: 0px;
     width: 100%; 
-    padding: 15px 0;  
+    flex-direction: column;
 `
 const Content = styled.div`
-    height: 100%;
-    display: flex;
-    // align-items: center;
-    // justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 32px 20px;
 `
 const Title = styled.h2`
     font-weight: 600;
     font-size: 20px;
 `
+const Wrap = styled.ul`
+  line-height: 2;
+`
 const List = styled.li`
-    list-style:none;
+  list-style:none;
+  float: left;
+  margin: 3px;
 `
 
 export default function Footer(){
@@ -31,17 +35,23 @@ export default function Footer(){
         <>
             <Container>
                 <Content>
-                    <Title>footer</Title>
-                    <ul>
-                        <List>정재현</List>
-                        <List>정재현</List>
-                        <List>정재현</List>
-                    </ul>
-                    <ul>
-                        <List>정재현</List>
-                        <List>정재현</List>
-                        <List>정재현</List>
-                    </ul>
+                    <img src={require("../img/favicon.ico")} alt="logo"/>
+                    <Title>메타몽</Title>
+                    <div>
+                        <Wrap>
+                            <List>이은성</List>
+                            <List>임혁</List>
+                            <List>김성준</List>
+                        </Wrap>
+                        <Wrap>
+                            <List>정재현</List>
+                            <List>한윤희</List>
+                            <List>허영민</List>
+                        </Wrap>
+                        <ul>
+                            <List>&copy;CopyRight&nbsp;&nbsp;C103</List>
+                        </ul>
+                    </div>
                 </Content>
             </Container>
 
