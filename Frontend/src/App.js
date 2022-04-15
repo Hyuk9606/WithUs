@@ -3,6 +3,7 @@ import Main from './pages/main/main';
 import About from './pages/about/about';
 import Webgl from './pages/webgl/webgl';
 import LoginModal from './component/loginModal';
+import Footer from './component/footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="webgl" element={<Webgl/>} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
