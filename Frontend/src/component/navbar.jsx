@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu,AiOutlineHome } from "react-icons/ai"
 import {BsPersonCircle} from "react-icons/bs"
 import {GiMagnifyingGlass} from "react-icons/gi"
+import LoginModal from './loginModal';
 
 const NavBox = styled.div`
     width: 100%;
@@ -32,6 +33,7 @@ const LogoImg = styled.img`
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const open = Boolean(anchorEl);
     let navigate = useNavigate()
 
@@ -50,36 +52,48 @@ export default function Navbar() {
         navigate('/about')
         setAnchorEl(null);
     }
-    return (
-        <NavBox>
-            <LogoBox>
-                <LogoImg src='logo.png' onClick={handleHomeClick} />
-            </LogoBox>
-            <MenuBar>
-                <Button
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                >
-                    <AiOutlineMenu size='40' color='white'/>
-                </Button>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                    }}
-                >
-                    <MenuItem onClick={handleHomeClick}><AiOutlineHome size='20' />&nbsp;&nbsp;Home</MenuItem>
-                    <MenuItem onClick={handleClose}><BsPersonCircle size='20'/>&nbsp;&nbsp;Login</MenuItem>
-                    <MenuItem onClick={handleAboutClick}><GiMagnifyingGlass size='20'/>&nbsp;&nbsp;About</MenuItem>
+    const handleLoginClick = () => {
+        setIsModalOpen(true);
+        setAnchorEl(null);
+    }
 
-                </Menu>
-            </MenuBar>
-        </NavBox>
+    const ModalClose = () => {
+        setIsModalOpen(false);
+    }
+
+    return (
+        <>
+            <NavBox>
+                <LogoBox>
+                    <LogoImg src='logo.png' onClick={handleHomeClick} />
+                </LogoBox>
+                <MenuBar>
+                    <Button
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >
+                        <AiOutlineMenu size='40' color='white'/>
+                    </Button>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        <MenuItem onClick={handleHomeClick}><AiOutlineHome size='20' />&nbsp;&nbsp;Home</MenuItem>
+                        <MenuItem onClick={handleLoginClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Login</MenuItem>
+                        <MenuItem onClick={handleAboutClick}><GiMagnifyingGlass size='20'/>&nbsp;&nbsp;About</MenuItem>
+
+                    </Menu>
+                </MenuBar>
+            </NavBox>
+            <LoginModal isModalOpen={isModalOpen} ModalClose={ModalClose}/>
+        </>
     )
 }
