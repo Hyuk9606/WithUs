@@ -27,19 +27,23 @@ const Sidebar = styled.div`
     `
 
 export default function AboutSidbar(){
-
+// 600 1500
+    const [scroll, setScroll] = useState(0);
 
     function handleClick(event) {
         // console.log(arr[0][0].classList, "arr classList")
         // console.log(event.target.className,"target")
-        event.target.style.color="red";
-        let div;
-        for(let i=0; i<arr.length; i++){
-            if(event.target.className !== arr[i][0].className){
-                // console.log(arr[i][0])
-                arr[i][0].style.color = "black";
-            }
-        }
+        // event.target.style.color="red";
+        if({scroll} > 600){
+                    // console.log(arr[i][0])
+                    arr[0][0].style.color = "red";
+                }
+        // for(let i=0; i<arr.length; i++){
+        //     if(event.target.className !== arr[i][0].className){
+        //         // console.log(arr[i][0])
+        //         arr[i][0].style.color = "black";
+        //     }
+        // }
     }
 
     const menuSelect=(e)=>{
@@ -66,6 +70,7 @@ export default function AboutSidbar(){
             });
             setSelect(text);
         }
+
         handleClick(e)
     }
     const [select, setSelect] = useState("");
@@ -74,16 +79,44 @@ export default function AboutSidbar(){
 
     useEffect(()=>{
         let subArr = [];
-            for(let i=0; i<3; i++){
+            for(let i=0; i<menu.length; i++){
                 subArr.push(document.getElementsByClassName(`div${i}`))
                 setArr(subArr);
             }
     },[])
 
-//     window.addEventListener("scroll", () => {
-//         let value = window.scrollY
-//         console.log("scrollY : ", value);
-//     })
+    useEffect(() => {
+        function scrollListener(){
+            window.addEventListener("scroll", handleScroll);
+        }
+        scrollListener();
+        return()=>{
+            window.removeEventListener("scroll", handleScroll);
+        }
+    });
+
+    const handleScroll=()=>{
+        setScroll(window.scrollY);
+        const ChangeColor=(idx)=>{
+            for(let i=0; i<arr.length; i++){
+                if(i == idx) {
+                    continue;
+                }
+                arr[i][0].style.color = "black";
+            }
+        }
+        if (scroll >= 0 && scroll < 600) {
+                arr[0][0].style.color = "red";
+                ChangeColor(0);
+            } else if (scroll >= 600 && scroll < 1500) {
+                arr[1][0].style.color = "red";
+                ChangeColor(1);
+            } else if (scroll >= 1500) {
+                arr[2][0].style.color = "red";
+                ChangeColor(2);
+        }
+    }
+
     return (
         <>
             <Wrapper>
