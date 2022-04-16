@@ -7,8 +7,7 @@ import Preview from "../../component/about/preview";
 
 const Wrap = styled.div`
   //margin-left: 400px;
-  width: 100%;
-  background-color: aqua;
+  //width: 100%;
 `
 
 export default function About() {
