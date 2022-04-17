@@ -6,6 +6,7 @@ import GoogleLogin from 'react-google-login';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import styled from 'styled-components';
 
 const style = {
     position: 'absolute',
@@ -19,6 +20,50 @@ const style = {
     p: 4,
   };
 
+const Title = styled.h1`
+    text-align: center;
+    font-size : 50px;
+    margin-bottom: 15%;
+    font-family: 'Jua', sans-serif;
+`
+const LoginButtonBox = styled.div`
+    margin: 5% auto 5% auto;
+`
+const NaverButton = styled.button`
+    background-color: #2DB400;
+    border: 1px solid #2DB400;
+    border-radius: 5px;
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    display: block;
+    font-size: 17px;
+    color : white;
+    font-family: 'Jua', sans-serif;
+`
+const KakaoButton = styled.button`
+    background-color: #f9e000;
+    border: 1px solid #f9e000;
+    border-radius: 5px;
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    display: block;
+    font-size: 17px;
+    font-family: 'Jua', sans-serif;
+`
+const GoogleButton = styled.button`
+    background-color: lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    display: block;
+    font-size: 17px;
+    color: grey;
+    font-family: 'Jua', sans-serif;
+`
 
 export default function LoginModal(props) {
     const [open, setOpen] = useState(false);
@@ -60,13 +105,14 @@ export default function LoginModal(props) {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
+                <Title>로그인</Title>
                 <NaverLogin 
                 clientId={`${process.env.REACT_APP_NAVER}`}
                 callbackUrl="http://localhost:3000/"
                 render={renderProps => (
-                    <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                        <button>네이버</button>
-                    </div>
+                    <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                        <NaverButton>네이버로그인</NaverButton>
+                    </LoginButtonBox>
                 )}
                 onSuccess={(e) => _clickSnsLoginNaver(e)}
                 onFailure={(result) => console.error(result)}
@@ -74,9 +120,9 @@ export default function LoginModal(props) {
                 <KakaoLogin 
                     token={`${process.env.REACT_APP_KAKAO}`}
                     render={renderProps => (
-                        <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                            <button>카카오</button>
-                        </div>
+                        <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                            <KakaoButton>카카오로그인</KakaoButton>
+                        </LoginButtonBox>
                     )}
                     onSuccess={(e) => _clickSnsLoginKakao(e)}
                     onFail={console.error}
@@ -86,9 +132,9 @@ export default function LoginModal(props) {
                     clientId={`${process.env.REACT_APP_GOOGLE}`}
                     buttonText="구글로그인"
                     render={renderProps=> (
-                        <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                            <button>구글</button>
-                        </div>
+                        <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                            <GoogleButton>구글로그인</GoogleButton>
+                        </LoginButtonBox>
                     )}
                     onSuccess={(e) => _clickSnsLoginGoogle(e)}
                     onFailure={console.log}
@@ -96,6 +142,9 @@ export default function LoginModal(props) {
                 />
             </Box>
         </Modal>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+        </style>
     </>
   )
 }
