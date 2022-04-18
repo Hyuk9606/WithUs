@@ -34,6 +34,9 @@ const StartButton = styled.button`
   display: block;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 `
+const VideoWrap = styled.div`
+  
+`
 
 export default function Main() {
   let navigate = useNavigate()
@@ -53,23 +56,25 @@ export default function Main() {
   return (
     <>
       <MainContainer>
-        <video
-          autoPlay
-          muted
-          loop
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            left: "50%",
-            top: "50%",
-            objectFit : "cover",
-            transform: "translate(-50%,-50%)",
-            zIndex: -1,
-          }}
-        >
-          <source src={test} type='video/mp4'/>
-        </video>
+          <VideoWrap>
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    left: "50%",
+                    top: "50%",
+                    objectFit : "cover",
+                    transform: "translate(-50%,-50%)",
+                    zIndex: -1,
+                  }}
+                >
+                  <source src={test} type='video/mp4'/>
+                </video>
+          </VideoWrap>
         <Title>With Us</Title>
         <ButtonBox>
           <StartButton onClick={() => clickbutton()}>&nbsp;&nbsp;Start&nbsp;&nbsp;</StartButton>

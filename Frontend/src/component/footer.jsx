@@ -2,10 +2,10 @@ import React from "react";
 import styled from 'styled-components';
 
 const Container = styled.div`
-    background-color: #303740;
-    position: relative;
-    bottom: 0px;
-    width: 100%; 
+  background-color: #303740;
+  position: relative;
+  width: 100%;
+  height: 200px;
 `
 const Content = styled.div`
   align-items: center;
@@ -13,7 +13,6 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   color: white;
-  padding: 32px 20px;
 `
 const Title = styled.h2`
     font-weight: 600;

@@ -18,6 +18,7 @@ const NavBox = styled.div`
     justify-content: space-between;
     position: fixed;
     top: 0;
+  z-index: 9999;
 `
 const MenuBar = styled.div`
     margin: auto 20px auto 0;
