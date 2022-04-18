@@ -4,6 +4,7 @@ import Introduce from "../../component/about/introduce";
 import styled from 'styled-components';
 import Guide from "../../component/about/guide";
 import Preview from "../../component/about/preview";
+import Navbar from '../../component/navbar';
 
 const Wrap = styled.div`
   //margin-left: 400px;
@@ -13,7 +14,8 @@ const Wrap = styled.div`
 export default function About() {
 
   return (
-    <div>about
+    <div>
+        <Navbar />
         <AboutSidbar />
         <Wrap>
             <Introduce />

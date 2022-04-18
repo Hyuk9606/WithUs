@@ -12,8 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main/>}/>
-          <Route path="about" element={<About/>} />
-          <Route path="webgl" element={<Webgl/>} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/webgl" element={<Webgl/>} />
         </Routes>
       </BrowserRouter>
       <Footer />
