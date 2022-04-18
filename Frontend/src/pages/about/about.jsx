@@ -14,7 +14,7 @@ const Wrap = styled.div`
 export default function About() {
 
   return (
-    <div>
+    <>
         <Navbar />
         <AboutSidbar />
         <Wrap>
@@ -22,6 +22,6 @@ export default function About() {
             <Guide />
             <Preview />
         </Wrap>
-    </div>
+    </>
   )
 }
