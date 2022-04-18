@@ -5,14 +5,15 @@ const Wrapper = styled.div`
          position: fixed;
          height: 100%;
          width: 200px;
-         background-color: #000000;
-         background-color: white;
-      text-align: center;
+         background-color: beige;
+        text-align: center;
     `
+
 const Sidebar = styled.div`
       position: fixed;
       margin: 0 auto;
-      top: 50%;
+      top: 40%;
+      font-family: 'Jua', sans-serif, cursive;
       a {
         padding: 6px 8px 6px 16px;
         text-decoration: none;
@@ -50,21 +51,21 @@ export default function AboutSidbar(){
         const text = e.target.text;
         if(text == "소개"){
             window.scrollTo({
-                top: 92,
+                top: 0,
                 left: 0,
                 behavior: 'smooth'
             });
             setSelect(text);
         }else if(text == "조작법") {
             window.scrollTo({
-                top: 1034,
+                top: 934,
                 left: 0,
                 behavior: 'smooth'
             });
             setSelect(text);
         }else{
             window.scrollTo({
-                top: 1967,
+                top: 1800,
                 left: 0,
                 behavior: 'smooth'
             });
@@ -130,6 +131,9 @@ export default function AboutSidbar(){
                     })}
                 </Sidebar>
             </Wrapper>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+            </style>
         </>
     );
 };
