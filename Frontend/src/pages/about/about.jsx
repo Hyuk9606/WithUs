@@ -7,8 +7,7 @@ import Preview from "../../component/about/preview";
 import Navbar from '../../component/navbar';
 
 const Wrap = styled.div`
-  //margin-left: 400px;
-  //width: 100%;
+  font-family: 'Jua', sans-serif, cursive;
 `
 
 export default function About() {
@@ -22,6 +21,9 @@ export default function About() {
             <Guide />
             <Preview />
         </Wrap>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+        </style>
     </>
   )
 }
