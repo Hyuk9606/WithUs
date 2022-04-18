@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     background-color: #303740;
-    position: absolute;
+    position: relative;
     bottom: 0px;
     width: 100%; 
-    flex-direction: column;
 `
 const Content = styled.div`
   align-items: center;
@@ -32,7 +31,6 @@ const List = styled.li`
 export default function Footer(){
 
     return(
-        <>
             <Container>
                 <Content>
                     <img src={require("../img/favicon.ico")} alt="logo"/>
@@ -54,7 +52,5 @@ export default function Footer(){
                     </div>
                 </Content>
             </Container>
-
-        </>
     )
 }
