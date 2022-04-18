@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
+import styled, {keyframes } from 'styled-components';
+import {FaArrowCircleDown} from 'react-icons/fa';
 
 const Wrapper = styled.div`
          position: fixed;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
 const Sidebar = styled.div`
       position: fixed;
       margin: 0 auto;
-      top: 40%;
+      top: 25%;
       font-family: 'Jua', sans-serif, cursive;
       a {
         padding: 6px 8px 6px 16px;
@@ -21,10 +22,21 @@ const Sidebar = styled.div`
         display: block;
         color: black;
         cursor: pointer;
-        &:hover {
-          color: darkgreen;
-        }
       }      
+    `
+    const bounceText = keyframes`
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
+    `
+
+    const ClickHere = styled.div`
+     animation-name: ${bounceText};
+      animation-duration: 3s; // 애니메이션 지속시간
+      animation-timing-function: linear; // 애니메이션 움직임 속도
+      animation-iteration-count: infinite; // 애니메이션 반복 횟수 지정
+      color: #166678;
+      margin-bottom: 5px;
     `
 
 export default function AboutSidbar(){
@@ -122,9 +134,17 @@ export default function AboutSidbar(){
         <>
             <Wrapper>
                 <Sidebar>
+                    <ClickHere>
+                        <div>
+                            <h1>click</h1>
+                        </div>
+                        <div>
+                            <FaArrowCircleDown size="30" />
+                        </div>
+                    </ClickHere>
                     {menu.map((text,idx)=> {
                             return (
-                            <div className="div" key={idx}>
+                            <div key={idx}>
                                 <a value={text} onClick={menuSelect} className={"div"+idx} >{text}</a>
                             </div>
                             )
