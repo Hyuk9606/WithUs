@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import styled from 'styled-components';
 
+import {GOOGLE_AUTH_URL,FACEBOOK_AUTH_URL,NAVER_AUTH_URL,KAKAO_AUTH_URL } from '../utils'
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -78,23 +80,23 @@ export default function LoginModal(props) {
         }
     }, [props])
 
-    const _clickSnsLoginKakao = (e) => {
-        console.log(e)
-        props.ModalClose()
-        let kakaoid = e.profile.id; // 카카오에서 제공한 ID
-    };
-    const _clickSnsLoginNaver = (e) => {
-        setOpen(false)
-        console.log(e)
-        console.log(props)
-        props.ModalClose()
-        let naverid = e.id; // 네이버에서 제공한 ID
-    };
-    const _clickSnsLoginGoogle = (e) => {
-        console.log(e)
-        props.ModalClose()
-        let googleid = e.Ft.NT; // 구글에서 제공한 ID
-    };
+    // const _clickSnsLoginKakao = (e) => {
+    //     console.log(e)
+    //     props.ModalClose()
+    //     let kakaoid = e.profile.id; // 카카오에서 제공한 ID
+    // };
+    // const _clickSnsLoginNaver = (e) => {
+    //     setOpen(false)
+    //     console.log(e)
+    //     console.log(props)
+    //     props.ModalClose()
+    //     let naverid = e.id; // 네이버에서 제공한 ID
+    // };
+    // const _clickSnsLoginGoogle = (e) => {
+    //     console.log(e)
+    //     props.ModalClose()
+    //     let googleid = e.Ft.NT; // 구글에서 제공한 ID
+    // };
 
   return (
     <>
@@ -106,7 +108,25 @@ export default function LoginModal(props) {
         >
             <Box sx={style}>
                 <Title>로그인</Title>
-                <NaverLogin 
+
+                <a href={NAVER_AUTH_URL} style={{textDecoration:'none'}}>
+                    <LoginButtonBox>
+                        <NaverButton>네이버로그인</NaverButton>
+                    </LoginButtonBox>
+                </a>
+                <a href={KAKAO_AUTH_URL} style={{textDecoration:'none'}}>
+                    <LoginButtonBox>
+                        <KakaoButton>카카오로그인</KakaoButton>
+                    </LoginButtonBox>
+                </a>
+                <a href={GOOGLE_AUTH_URL} style={{textDecoration:'none'}}>
+                    <LoginButtonBox>
+                        <GoogleButton>구글로그인</GoogleButton>
+                    </LoginButtonBox>
+                </a>
+
+
+                {/* <NaverLogin 
                 clientId={`${process.env.REACT_APP_NAVER}`}
                 callbackUrl="http://localhost:3000/"
                 render={renderProps => (
@@ -139,7 +159,7 @@ export default function LoginModal(props) {
                     onSuccess={(e) => _clickSnsLoginGoogle(e)}
                     onFailure={console.log}
                     cookiePolicy={'single_host_origin'}
-                />
+                /> */}
             </Box>
         </Modal>
         <style>
