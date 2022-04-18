@@ -7,10 +7,12 @@ import {useState} from 'react'
 import LoginModal from '../../component/loginModal'
 
 const MainContainer = styled.div`
-  margin-top: 76px ;
+  height: 100vh;
+  margin: 0;
 `
 const Title = styled.div`
-  margin : 15% auto 10% auto;
+  padding-top:10% ;
+  padding-bottom: 5%;
   text-align: center;
   font-size: 100px;
   background-image: -webkit-linear-gradient(right, #d9a7c7, #fffcdc);
@@ -34,6 +36,15 @@ const StartButton = styled.button`
   display: block;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 `
+const ContentBox = styled.div`
+  text-align: center;
+  font-size: 45px;
+  padding-left: 10%;
+  padding-right: 10%;
+  color : white;
+  padding-bottom: 5%;
+  font-family: 'Jua', sans-serif, cursive;
+`
 
 export default function Main() {
   let navigate = useNavigate()
@@ -52,25 +63,26 @@ export default function Main() {
 }
   return (
     <>
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: "50%",
+          top: "50%",
+          objectFit : "cover",
+          transform: "translate(-50%,-50%)",
+          zIndex: -1,
+        }}
+      >
+        <source src={test} type='video/mp4'/>
+      </video>
       <MainContainer>
-        <video
-          autoPlay
-          muted
-          loop
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            left: "50%",
-            top: "50%",
-            objectFit : "cover",
-            transform: "translate(-50%,-50%)",
-            zIndex: -1,
-          }}
-        >
-          <source src={test} type='video/mp4'/>
-        </video>
         <Title>With Us</Title>
+        <ContentBox>with Us에서는 가상공간에 참여해 사용자들에게 토론, 발표, 대화 등의 공간을 제공해간편하게 커뮤니티를 구성할 수 있습니다.</ContentBox>
         <ButtonBox>
           <StartButton onClick={() => clickbutton()}>&nbsp;&nbsp;Start&nbsp;&nbsp;</StartButton>
         </ButtonBox>
@@ -85,6 +97,7 @@ export default function Main() {
             -webkit-filter: hue-rotate(-180deg);
           }
         }`}
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
       </style>
       <LoginModal isModalOpen={isModalOpen} ModalClose={ModalClose}/>
     </>

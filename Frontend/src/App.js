@@ -12,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main/>}/>
+          <Route path="/oauth2/redirect" element={<Main/>}/>
           <Route path="/about" element={<About/>} />
           <Route path="/webgl" element={<Webgl/>} />
         </Routes>
