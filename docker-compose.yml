@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  backend: # 컨테이너 이름
+    image: skdltm117/withus-backend:0.1 # 실행할 이미지
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://withus-mysql:3306/withus?useUnicode=yes&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Seoul"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SERVER_PORT: "8080"
+    ports:
+      - 8080:8080
+    depends_on: # 이게 실행되어야 backend가 실행됨
+      - withus-mysql
+    networks:
+      - withus_network
+    restart: always
+    command: "java USE_PROFILE=dev -jar /app.jar"
+
+  withus-mysql:
+    image: mysql:8.0.28
+    cap_add:
+      - SYS_NICE    #mbind: Operation not permitted 오류가 발생하지 않게 된다.
+
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "withus"
+      MYSQL_USER: "ssafy"
+      MYSQL_PASSWORD: "1234"
+    command:
+      [
+          "--character-set-server=utf8mb4",
+          "--collation-server=utf8mb4_unicode_ci"
+      ]
+    ports: # 내부의 3306포트가 외부의 3307포트로 연결됨. 외부에서 mysql에 요청하는건 없어서 신경 쓸 필요 없음. 포트 충돌떄문에 함
+      - 3307:3306
+    restart: always
+    networks:
+      - withus_network
+
+networks:
+  withus_network:
+    driver: bridge

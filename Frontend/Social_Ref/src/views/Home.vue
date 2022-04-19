@@ -1,24 +1,31 @@
 <template>
   <div class="home">
-    <nav-bar :stickyMode="stickyMode" @onOpenLoginModal="openLoginModal" @onLogout="logout"/>
+    <nav-bar
+      :stickyMode="stickyMode"
+      @onOpenLoginModal="openLoginModal"
+      @onLogout="logout"
+    />
     <router-view />
-    <login-modal v-if="isLoginModalOpen" :isOpen="isLoginModalOpen" @onCloseModal="closeLoginModal"/>
+    <login-modal
+      v-if="isLoginModalOpen"
+      :isOpen="isLoginModalOpen"
+      @onCloseModal="closeLoginModal"
+    />
 
     <div class="bp-main-container">
       <section class="main-top-section">
         <p>socialLogin</p>
-        <p v-if='isLoggedIn'> userName : {{username}} </p>
-        <p v-if='isLoggedIn'> role : {{roleType}} </p>
+        <p v-if="isLoggedIn">userName : {{ username }}</p>
+        <p v-if="isLoggedIn">role : {{ roleType }}</p>
       </section>
     </div>
-
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
 import LoginModal from "@/components/LoginModal";
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Home",
@@ -30,16 +37,17 @@ export default {
     };
   },
   created() {
+    console.log(process.env);
     window.addEventListener("scroll", () => {
       this.isScrollTop = window.scrollY === 0;
     });
-    window.onload=function(){
-      console.log("웩")
-      console.log(process.env.VUE_APP_BACKEND_DOMAIN==null)
-    }
+    window.onload = function () {
+      console.log("웩");
+      console.log(process.env.VUE_APP_BACKEND_DOMAIN == null);
+    };
   },
   methods: {
-    ...mapMutations(['setToken', 'setUser']),
+    ...mapMutations(["setToken", "setUser"]),
     openLoginModal() {
       this.isLoginModalOpen = true;
       //////////////////////////////////////////////////////////////
@@ -57,24 +65,24 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['token', 'user']),
+    ...mapGetters(["token", "user"]),
     stickyMode() {
       return !(this.isScrollTop && this.$route.path === "/");
     },
-    isLoggedIn () {
-      return this.token != null
+    isLoggedIn() {
+      return this.token != null;
     },
-    isAdmin () {
-      return this.user && this.user.roleType === 'ADMIN'
+    isAdmin() {
+      return this.user && this.user.roleType === "ADMIN";
     },
-    username () {
-      if (!this.user) return ''
-      return this.user.username
+    username() {
+      if (!this.user) return "";
+      return this.user.username;
     },
-    roleType () {
-      if (!this.user) return ''
-      return this.user.roleType
-    }
+    roleType() {
+      if (!this.user) return "";
+      return this.user.roleType;
+    },
   },
 };
 </script>

@@ -10,5 +10,5 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: { account },
-  plguin: [createPersistedState({ storage: window.sessionStorage })],
+  plguins: [createPersistedState({ storage: window.sessionStorage })],
 });
