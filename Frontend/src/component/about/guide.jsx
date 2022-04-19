@@ -1,9 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 
-export default function Guide(){
-
-    const GuideWrap = styled.div`
+const GuideWrap = styled.div`
       width: 100%;
       height: 100vh;
       display: flex;
@@ -12,12 +10,15 @@ export default function Guide(){
       align-items: center;
       justify-content: center;
     `
-    const Image = styled.image`
+const Image = styled.image`
       border-radius: 100px;
     `
-    const StyleImage = styled.img`
+const StyleImage = styled.img`
       border-radius: 15px;
     `
+
+export default function Guide(){
+
     return(
         <>
             <GuideWrap>
