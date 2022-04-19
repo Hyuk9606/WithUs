@@ -80,6 +80,17 @@ spring:
             - profile_image
             - account_email
           clientName: Kakao
+        naver:
+          clientId: '4027eCw7q7GFWvcQs3Cp'
+          clientSecret: 'QyAmvEwIm8'
+          clientAuthenticationMethod: post
+          authorizationGrantType: authorization_code
+          redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+          scope:
+            - nickname
+            - email
+            - profile_image
+          clientName: Naver
       # Provider ??
       provider:
         kakao:
@@ -87,7 +98,11 @@ spring:
           tokenUri: https://kauth.kakao.com/oauth/token
           userInfoUri: https://kapi.kakao.com/v2/user/me
           userNameAttribute: id
-
+        naver:
+          authorizationUri: https://nid.naver.com/oauth2.0/authorize
+          tokenUri: https://nid.naver.com/oauth2.0/token
+          userInfoUri: https://openapi.naver.com/v1/nid/me
+          userNameAttribute: response
 # cors ??
 cors:
   allowed-origins: 'http://localhost:3000'
