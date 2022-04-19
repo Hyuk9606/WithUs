@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../component/navbar';
 import styled from 'styled-components';
 import test from '../../video/test.mp4'
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import LoginModal from '../../component/loginModal'
+import { useSelector, useDispatch } from 'react-redux';
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -50,6 +51,12 @@ export default function Main() {
   let navigate = useNavigate()
   const [isLogined, setIsLogined] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch()
+  const user = useSelector(state => state)
+  useEffect(() => {
+    setIsLogined(user.auth.isLogined)
+  })
 
   const clickbutton = () => {
     if (isLogined === false) {

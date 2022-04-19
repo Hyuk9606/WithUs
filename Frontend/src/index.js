@@ -8,53 +8,17 @@ import { Provider } from 'react-redux';
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { rootReducer } from "./component/reducers/index"
+import store from './component/store/store'
 
-
-const initUser = {
-  token : '',
-  username : '',
-  email : '',
-  userId : '',
-  isLogined : false,
-}
-
-const logoutUser = {
-  token : '',
-  username : '',
-  email : '',
-  userId : '',
-  isLogined : false,
-}
-
-
-function reducer(state = initUser, action) {
-  switch (action.type) {
-    case "LOGIN": 
-    state.token = action.token
-    state.username = action.data.data.body.user.username
-    state.email = action.data.data.body.user.email
-    state.userId = action.data.data.body.user.userId
-    state.isLogined = true
-    return state
-    case "LOGOUT":
-      state = logoutUser
-      return state
-    }
-    
-    return state
-  }
-  
-let store = createStore(reducer)
-const persistor = persistStore(store);
+let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-
+      <PersistGate persistor={persistor}>
         <App />
-
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
