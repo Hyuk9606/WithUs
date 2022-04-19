@@ -6,16 +6,16 @@ const initUser = {
     email : '',
     userId : '',
     isLogined : false,
-  }
-  
-  const logoutUser = {
+}
+
+const logoutUser = {
     token : '',
     username : '',
     email : '',
     userId : '',
     isLogined : false,
-  }
-  
+}
+
 
 export default function auth(state = initUser, action) {
     switch (action.type) {
@@ -25,12 +25,12 @@ export default function auth(state = initUser, action) {
             state.email = action.data.data.body.user.email
             state.userId = action.data.data.body.user.userId
             state.isLogined = true
-        return state
+        return { ...state, quote: action.payload };
 
         case "LOGOUT":
             state = logoutUser
-            return state
-
+            return { ...state, quote: action.payload };
+        
         default:
             return state;
         } 

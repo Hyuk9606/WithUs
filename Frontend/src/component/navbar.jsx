@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu,AiOutlineHome } from "react-icons/ai"
 import {BsPersonCircle} from "react-icons/bs"
@@ -36,11 +36,13 @@ const LogoImg = styled.img`
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
     const open = Boolean(anchorEl);
 
     const dispatch = useDispatch()
     const user = useSelector(state => state)
-    
+
+
     let navigate = useNavigate()
 
     const handleClick = (event) => {
@@ -97,7 +99,7 @@ export default function Navbar() {
                         }}
                     >
                         <MenuItem onClick={handleHomeClick}><AiOutlineHome size='20' />&nbsp;&nbsp;Home</MenuItem>
-                        {user.isLogined ? <MenuItem onClick={handleLogoutClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Logout</MenuItem> :
+                        {user.auth.isLogined ? <MenuItem onClick={handleLogoutClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Logout</MenuItem> :
                             <MenuItem onClick={handleLoginClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Login</MenuItem>
                         }
                         <MenuItem onClick={handleAboutClick}><GiMagnifyingGlass size='20'/>&nbsp;&nbsp;About</MenuItem>
