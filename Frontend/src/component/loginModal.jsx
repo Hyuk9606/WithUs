@@ -80,23 +80,6 @@ export default function LoginModal(props) {
         }
     }, [props])
 
-    // const _clickSnsLoginKakao = (e) => {
-    //     console.log(e)
-    //     props.ModalClose()
-    //     let kakaoid = e.profile.id; // 카카오에서 제공한 ID
-    // };
-    // const _clickSnsLoginNaver = (e) => {
-    //     setOpen(false)
-    //     console.log(e)
-    //     console.log(props)
-    //     props.ModalClose()
-    //     let naverid = e.id; // 네이버에서 제공한 ID
-    // };
-    // const _clickSnsLoginGoogle = (e) => {
-    //     console.log(e)
-    //     props.ModalClose()
-    //     let googleid = e.Ft.NT; // 구글에서 제공한 ID
-    // };
 
   return (
     <>
@@ -125,41 +108,6 @@ export default function LoginModal(props) {
                     </LoginButtonBox>
                 </a>
 
-
-                {/* <NaverLogin 
-                clientId={`${process.env.REACT_APP_NAVER}`}
-                callbackUrl="http://localhost:3000/"
-                render={renderProps => (
-                    <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                        <NaverButton>네이버로그인</NaverButton>
-                    </LoginButtonBox>
-                )}
-                onSuccess={(e) => _clickSnsLoginNaver(e)}
-                onFailure={(result) => console.error(result)}
-                />
-                <KakaoLogin 
-                    token={`${process.env.REACT_APP_KAKAO}`}
-                    render={renderProps => (
-                        <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                            <KakaoButton>카카오로그인</KakaoButton>
-                        </LoginButtonBox>
-                    )}
-                    onSuccess={(e) => _clickSnsLoginKakao(e)}
-                    onFail={console.error}
-                    onLogout={console.info}
-                />
-                <GoogleLogin
-                    clientId={`${process.env.REACT_APP_GOOGLE}`}
-                    buttonText="구글로그인"
-                    render={renderProps=> (
-                        <LoginButtonBox onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                            <GoogleButton>구글로그인</GoogleButton>
-                        </LoginButtonBox>
-                    )}
-                    onSuccess={(e) => _clickSnsLoginGoogle(e)}
-                    onFailure={console.log}
-                    cookiePolicy={'single_host_origin'}
-                /> */}
             </Box>
         </Modal>
         <style>

@@ -9,6 +9,7 @@ import { AiOutlineMenu,AiOutlineHome } from "react-icons/ai"
 import {BsPersonCircle} from "react-icons/bs"
 import {GiMagnifyingGlass} from "react-icons/gi"
 import LoginModal from './loginModal';
+import { useSelector, useDispatch } from 'react-redux';
 
 const NavBox = styled.div`
     width: 100%;
@@ -36,6 +37,10 @@ export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const open = Boolean(anchorEl);
+
+    const dispatch = useDispatch()
+    const user = useSelector(state => state)
+    
     let navigate = useNavigate()
 
     const handleClick = (event) => {
@@ -55,6 +60,10 @@ export default function Navbar() {
     }
     const handleLoginClick = () => {
         setIsModalOpen(true);
+        setAnchorEl(null);
+    }
+    const handleLogoutClick = () => {
+        dispatch({type:"LOGOUT"});
         setAnchorEl(null);
     }
 
@@ -88,7 +97,9 @@ export default function Navbar() {
                         }}
                     >
                         <MenuItem onClick={handleHomeClick}><AiOutlineHome size='20' />&nbsp;&nbsp;Home</MenuItem>
-                        <MenuItem onClick={handleLoginClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Login</MenuItem>
+                        {user.isLogined ? <MenuItem onClick={handleLogoutClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Logout</MenuItem> :
+                            <MenuItem onClick={handleLoginClick}><BsPersonCircle size='20'/>&nbsp;&nbsp;Login</MenuItem>
+                        }
                         <MenuItem onClick={handleAboutClick}><GiMagnifyingGlass size='20'/>&nbsp;&nbsp;About</MenuItem>
 
                     </Menu>
