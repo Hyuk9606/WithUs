@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     `
 
 const Sidebar = styled.div`
-      position: fixed;
+      position: relative;
       margin: 0 auto;
       top: 25%;
       font-family: 'Jua', sans-serif, cursive;
