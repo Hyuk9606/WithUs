@@ -24,6 +24,14 @@ const NavBox = styled.div`
 const MenuBar = styled.div`
     margin: auto 20px auto 0;
 `
+const LoginName = styled.div`
+  margin: auto 20px auto 0;
+  color: white;
+  font-family: Jua, sans-serif, cursive;
+`
+const RightItem = styled.div`
+  display: flex;
+`
 const LogoBox = styled.div`
 `
 
@@ -41,7 +49,7 @@ export default function Navbar() {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state)
-
+    console.log(user.auth);
 
     let navigate = useNavigate()
 
@@ -79,6 +87,11 @@ export default function Navbar() {
                 <LogoBox>
                     <LogoImg src='logo.png' onClick={handleHomeClick} />
                 </LogoBox>
+                <RightItem>
+                    {user.auth.username == "" ? (null):(
+                    <LoginName>안녕하세요 {user.auth.username}님</LoginName>
+                )
+                }
                 <MenuBar>
                     <Button
                         id="basic-button"
@@ -106,6 +119,7 @@ export default function Navbar() {
 
                     </Menu>
                 </MenuBar>
+                </RightItem>
             </NavBox>
             <LoginModal isModalOpen={isModalOpen} ModalClose={ModalClose}/>
         </>
