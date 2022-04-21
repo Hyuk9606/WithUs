@@ -3,10 +3,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 
 const unityContext = new UnityContext({
-  loaderUrl: "build/forwebgl.loader.js",
-  dataUrl: "build/forwebgl.data",
-  frameworkUrl: "build/forwebgl.framework.js",
-  codeUrl: "build/forwebgl.wasm",
+  loaderUrl: "build/webgl확인용.loader.js",
+  dataUrl: "build/webgl확인용.data",
+  frameworkUrl: "build/webgl확인용.framework.js",
+  codeUrl: "build/webgl확인용.wasm",
 });
 
 const GameContainer = styled.div`
