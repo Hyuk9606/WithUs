@@ -31,7 +31,7 @@ export default function Introduce(){
                 </div>
                 <div>
                     <Text>
-                        <h1>메타몽?</h1>
+                        <h1>With US?</h1>
                         <h3>Unity를 사용한 메타버스 환경</h3>
                         <h3>발표, 토론, 회의를 할 수 있는 기능</h3>
                     </Text>

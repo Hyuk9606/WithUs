@@ -89,7 +89,7 @@ export default function Main() {
       </video>
       <MainContainer>
         <Title>With Us</Title>
-        <ContentBox>with Us에서는 가상공간에 참여해 사용자들에게 토론, 발표, 대화 등의 공간을 제공해간편하게 커뮤니티를 구성할 수 있습니다.</ContentBox>
+        <ContentBox>With Us에서는 가상공간에 참여해 사용자들에게 토론, 발표, 대화 등의 공간을 제공해 간편하게 커뮤니티를 구성할 수 있습니다.</ContentBox>
         <ButtonBox>
           <StartButton onClick={() => clickbutton()}>&nbsp;&nbsp;Start&nbsp;&nbsp;</StartButton>
         </ButtonBox>
