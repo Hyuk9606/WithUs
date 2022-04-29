@@ -17,17 +17,24 @@ export default function Webgl() {
   const user = useSelector(state => state)
 
   const [characterData, setCharacterData] = useState('')
-  unityContext.on("showCharactor" , function(userdata) {
-    console.log('1',userdata)
-    setCharacterData(userdata)
+  const [isStart, setIsStart] = useState(false);
+
+
+  unityContext.on("ClickStartbtn" , function() {
+    setIsStart(true)
   });
   
   function sendUsername () {
     console.log(user.auth.username)
-    unityContext.send("PhotonManager", "GetUsername", user.auth.username);
+    unityContext.send("GameObject", "GetUser", user.auth.username);
+    unityContext.send("GameObject", "GetUserId", user.auth.userId);
+    
   }
   useEffect(() => {
-  },[])
+    console.log(user.auth.username)
+    unityContext.send("GameObject", "GetUser", user.auth.username);
+    unityContext.send("GameObject", "GetUserId", user.auth.userId);
+  },[isStart])
 
 
 
