@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const unityContext = new UnityContext({
-  loaderUrl: "build/build.loader.js",
-  dataUrl: "build/build.data",
-  frameworkUrl: "build/build.framework.js",
-  codeUrl: "build/build.wasm",
+  loaderUrl: "Build/Documents.loader.js",
+  dataUrl: "Build/Documents.data",
+  frameworkUrl: "Build/Documents.framework.js",
+  codeUrl: "Build/Documents.wasm",
 });
 
 const GameContainer = styled.div`
 `
-npm
+
 export default function Webgl() {
 
     // const [data, setData] = useState("");

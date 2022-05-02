@@ -31,11 +31,7 @@ export default function Introduce(){
                 </div>
                 <div>
                     <Text>
-<<<<<<< HEAD
-                        <h1>WithUs?</h1>
-=======
                         <h1>With US?</h1>
->>>>>>> 3477f75747777470f5511d1c5bcd2b6b078c0c61
                         <h3>Unity를 사용한 메타버스 환경</h3>
                         <h3>발표, 토론, 회의를 할 수 있는 기능</h3>
                     </Text>
