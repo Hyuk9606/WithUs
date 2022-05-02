@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import NaverLogin from 'react-naver-login';
-import KakaoLogin from 'react-kakao-login';
-import GoogleLogin from 'react-google-login';
+
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';

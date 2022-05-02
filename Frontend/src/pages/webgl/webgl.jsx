@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 
 const unityContext = new UnityContext({
   loaderUrl: "Build/Documents.loader.js",
@@ -11,6 +12,11 @@ const unityContext = new UnityContext({
 });
 
 const GameContainer = styled.div`
+
+`
+
+const OpenViduContainer = styled.div`
+  z-index: -1;
 `
 
 export default function Webgl() {
@@ -30,23 +36,44 @@ export default function Webgl() {
     // })
   const user = useSelector(state => state)
 
-  const [characterData, setCharacterData] = useState('')
-  unityContext.on("showCharactor" , function(userdata) {
-    console.log('1',userdata)
-    setCharacterData(userdata)
+  const [isStart, setIsStart] = useState(false);
+
+  // 디버깅 테스트
+  const [sessionName, SetSessionName] = useState('lobby')
+
+  function click() {
+    if (sessionName === 'lobby'){
+      SetSessionName('classroom')
+    } else{
+      SetSessionName('lobby')
+    }
+    console.log(sessionName)
+  }
+
+
+  unityContext.on("ClickStartbtn" , function() {
+    setIsStart(true)
   });
   
   function sendUsername () {
     console.log(user.auth.username)
-    unityContext.send("PhotonManager", "GetUsername", user.auth.username);
+    unityContext.send("GameObject", "GetUser", user.auth.username);
+    unityContext.send("GameObject", "GetUserId", user.auth.userId);
+    
   }
   useEffect(() => {
-  },[])
+    console.log(user.auth.username)
+    unityContext.send("GameObject", "GetUser", user.auth.username);
+    unityContext.send("GameObject", "GetUserId", user.auth.userId);
+  },[isStart])
 
 
 
   return (
     <>
+      <OpenViduContainer>
+        <VideoRoomComponent sessionName={sessionName}/>
+      </OpenViduContainer>
       <GameContainer>
         <Unity unityContext={unityContext} 
           style={{
@@ -58,6 +85,7 @@ export default function Webgl() {
         />;
       </GameContainer>
       <button onClick={sendUsername}>button</button>
+      <button onClick={click}>sessionChange</button>
     </>
   )
 }
