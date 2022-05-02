@@ -1,7 +1,7 @@
 package com.ssafy.withUs.api.service;
 
 import com.ssafy.withUs.api.entity.Avatar;
-import com.ssafy.withUs.api.repository.AvatarRepository;
+import com.ssafy.withUs.api.repository.user.AvatarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,5 @@
 package com.ssafy.withUs;
 
-import com.ssafy.withUs.api.entity.Avatar;
-import com.ssafy.withUs.api.repository.AvatarRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
