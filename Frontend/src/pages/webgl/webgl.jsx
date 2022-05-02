@@ -3,6 +3,7 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
+import axios from 'axios';
 
 const unityContext = new UnityContext({
   loaderUrl: "build/build.loader.js",
@@ -21,8 +22,43 @@ const OpenViduContainer = styled.div`
 
 export default function Webgl() {
   const user = useSelector(state => state)
-
+  const url = 'http://localhost:8080/api/v1/avatar'
   const [isStart, setIsStart] = useState(false);
+  const [charaterData, setCharaterData] = useState('');
+  const [token, setToken] = useState('');
+  let tmpData = `{
+    "settingsName": "MaleSettings",
+    "selectedElements": {
+        "Hair": 1,
+        "Beard": 7,
+        "Hat": 5,
+        "Shirt": 11,
+        "Pants": 9,
+        "Shoes": 11,
+        "Accessory": 11,
+        "Item1": -1
+    }`
+  useEffect(() => {
+    setToken(user.auth.token)
+  },[])
+
+  // 캐릭터 정보 받아오기
+  function getAvatar () {
+    axios.get(url, {headers: {
+      Authorization: `Bearer ${token}`
+    }}).then(response => 
+      console.log(response)
+      )
+  }
+
+  // 캐릭터 정보 저장하기
+  function saveAvatar (test) {
+    axios.post(url,test, {headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-type' : 'text/plane'
+    }},
+    ).then(response => console.log(response))
+  }
 
   // 디버깅 테스트
   const [sessionName, SetSessionName] = useState('lobby')
@@ -42,6 +78,8 @@ export default function Webgl() {
   });
   
   function sendUsername () {
+    saveAvatar(tmpData)
+    getAvatar()
     console.log(user.auth.username)
     unityContext.send("GameObject", "GetUser", user.auth.username);
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
@@ -58,7 +96,7 @@ export default function Webgl() {
   return (
     <>
       <OpenViduContainer>
-        <VideoRoomComponent sessionName={sessionName}/>
+        {/* <VideoRoomComponent sessionName={sessionName}/> */}
       </OpenViduContainer>
       <GameContainer>
         <Unity unityContext={unityContext} 
