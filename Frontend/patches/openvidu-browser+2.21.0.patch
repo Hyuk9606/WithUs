@@ -1,0 +1,47 @@
+diff --git a/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/index.js b/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/index.js
+index 149cc2d..c5a94f9 100644
+--- a/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/index.js
++++ b/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/index.js
+@@ -14,7 +14,7 @@
+  * limitations under the License.
+  *
+  */
+-
++// modify test
+ var JsonRpcClient = require('./jsonrpcclient');
+ 
+ 
+diff --git a/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/transports/webSocketWithReconnection.js b/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/transports/webSocketWithReconnection.js
+index 33b9821..d9b107f 100644
+--- a/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/transports/webSocketWithReconnection.js
++++ b/node_modules/openvidu-browser/src/OpenViduInternal/KurentoUtils/kurento-jsonrpc/clients/transports/webSocketWithReconnection.js
+@@ -152,7 +152,11 @@ function WebSocketWithReconnection(config) {
+     };
+ 
+     this.send = message => {
+-        ws.send(message);
++        if (ws.readyState === Websocket.OPEN) {
++            ws.send(message)
++        } else {
++            setTimeout(() => {this.send(), 1000})
++        }
+     };
+ 
+     this.addEventListener = (type, callback) => {
+diff --git a/node_modules/openvidu-browser/static/js/openvidu-browser-2.21.0.js b/node_modules/openvidu-browser/static/js/openvidu-browser-2.21.0.js
+index e9c077b..7cd1d0f 100644
+--- a/node_modules/openvidu-browser/static/js/openvidu-browser-2.21.0.js
++++ b/node_modules/openvidu-browser/static/js/openvidu-browser-2.21.0.js
+@@ -11030,7 +11030,11 @@ function WebSocketWithReconnection(config) {
+         reconnect(MAX_RETRIES, 1);
+     };
+     this.send = function (message) {
+-        ws.send(message);
++        if (ws.readyState === Websocket.OPEN) {
++            ws.send(message)
++        } else {
++            setTimeout(() => {this.send(), 1000})
++        }
+     };
+     this.addEventListener = function (type, callback) {
+         registerMessageHandler = function () {
