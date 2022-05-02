@@ -5,6 +5,7 @@ import About from './pages/about/about';
 import Webgl from './pages/webgl/webgl';
 import LoginModal from './component/loginModal';
 import Footer from './component/footer';
+import Vidu from "./openVidu/Vidu";
 // import VideoRoomComponent from './openVidu/components/VideoRoomComponent'
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/webgl" element={<Webgl/>} />
           {/* <Route path="/openvidu" element={< VideoRoomComponent sessionName='test'/>} /> */}
+          <Route path="/openvidu" element={<Vidu />} />
         </Routes>
       </BrowserRouter>
     </div>
