@@ -5,7 +5,7 @@ import About from './pages/about/about';
 import Webgl from './pages/webgl/webgl';
 import LoginModal from './component/loginModal';
 import Footer from './component/footer';
-import VideoRoomComponent from './openVidu/components/VideoRoomComponent'
+// import VideoRoomComponent from './openVidu/components/VideoRoomComponent'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route path="/oauth2/redirect" element={<Oauth/>}/>
           <Route path="/about" element={<About/>} />
           <Route path="/webgl" element={<Webgl/>} />
-          <Route path="/openvidu" element={< VideoRoomComponent sessionName='test'/>} />
+          {/* <Route path="/openvidu" element={< VideoRoomComponent sessionName='test'/>} /> */}
         </Routes>
       </BrowserRouter>
       <Footer />
