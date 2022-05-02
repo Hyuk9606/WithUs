@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
+// import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 import axios from 'axios';
 
 const unityContext = new UnityContext({
