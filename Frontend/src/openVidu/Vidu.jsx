@@ -10,9 +10,8 @@ const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 class Vidu extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            mySessionId: 'SessionA',
+            mySessionId: this.props.sessionName,
             myUserName: 'Participant' + Math.floor(Math.random() * 100),
             session: undefined,
             mainStreamManager: undefined,
@@ -31,8 +30,26 @@ class Vidu extends Component {
 
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
+
     }
 
+    componentDidUpdate(prevProps,prevState,snapshot) {
+        console.log("componentDidUpdate");
+        console.log(this.props.sessionName)
+        console.log("prevProps",prevProps);
+        console.log("prevState",prevState);
+        console.log("snapshot",snapshot);
+        
+        if (prevProps.sessionName !== this.props.sessionName) {
+            this.setState({
+            mySessionId: this.props.sessionName
+            }, () => {
+                this.leaveSession()
+                this.getToken()
+                this.joinSession();
+            })
+        }
+        }
     componentWillUnmount() {
         window.removeEventListener('beforeunload', this.onbeforeunload);
     }
@@ -179,7 +196,7 @@ class Vidu extends Component {
         this.setState({
             session: undefined,
             subscribers: [],
-            mySessionId: 'SessionA',
+            mySessionId: this.state.mySessionId,
             myUserName: 'Participant' + Math.floor(Math.random() * 100),
             mainStreamManager: undefined,
             publisher: undefined
@@ -227,44 +244,6 @@ class Vidu extends Component {
 
         return (
             <div className="container">
-                {this.state.session === undefined ? (
-                    <div id="join">
-                        <div id="img-div">
-                            <img src="resources/images/openvidu_grey_bg_transp_cropped.png" alt="OpenVidu logo" />
-                        </div>
-                        <div id="join-dialog" className="jumbotron vertical-center">
-                            <h1> Join a video session </h1>
-                            <form className="form-group" onSubmit={this.joinSession}>
-                                <p>
-                                    <label>Participant: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="userName"
-                                        value={myUserName}
-                                        onChange={this.handleChangeUserName}
-                                        required
-                                    />
-                                </p>
-                                <p>
-                                    <label> Session: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="sessionId"
-                                        value={mySessionId}
-                                        onChange={this.handleChangeSessionId}
-                                        required
-                                    />
-                                </p>
-                                <p className="text-center">
-                                    <input className="btn btn-lg btn-success" name="commit" type="submit" value="JOIN" />
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                ) : null}
-
                 {this.state.session !== undefined ? (
                     <div id="session">
                         <div id="session-header">
