@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const unityContext = new UnityContext({
-  loaderUrl: "Build/Documents.loader.js",
-  dataUrl: "Build/Documents.data",
-  frameworkUrl: "Build/Documents.framework.js",
-  codeUrl: "Build/Documents.wasm",
+  loaderUrl: "Build/build.loader.js",
+  dataUrl: "Build/build.data",
+  frameworkUrl: "Build/build.framework.js",
+  codeUrl: "Build/build.wasm",
 });
 
 const GameContainer = styled.div`
