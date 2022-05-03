@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
+// import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 import axios from 'axios';
 
 const unityContext = new UnityContext({
@@ -43,13 +43,18 @@ export default function Webgl() {
   },[])
 
   // 캐릭터 정보 받아오기
-  function getAvatar () {
-    axios.get(url, {headers: {
+  function getAvatar (userId) {
+    axios.get(url+"/"+userId, {headers: {
       Authorization: `Bearer ${token}`
-    }}).then(response => 
-      console.log(response)
-      )
+    }
+    }).then(response => {
+      console.log(response.data.body.avatar);
+      unityContext.send("GameObject", "ReceiveAvatar", response.data.body.avatar);
+    })
   }
+
+  unityContext.on("CallAvatar", function (userId) { getAvatar(userId); });
+  unityContext.on("CallSaveAvatar",  function (settings) { saveAvatar(settings); })
 
   // 캐릭터 정보 저장하기
   function saveAvatar (test) {
@@ -57,7 +62,10 @@ export default function Webgl() {
       Authorization: `Bearer ${token}`,
       'Content-type' : 'text/plane'
     }},
-    ).then(response => console.log(response))
+    ).then(response => {
+      console.log("저장 완료");
+      // console.log(response);
+    })
   }
 
   // 디버깅 테스트
@@ -78,8 +86,8 @@ export default function Webgl() {
   });
   
   function sendUsername () {
-    saveAvatar(tmpData)
-    getAvatar()
+    // saveAvatar(tmpData)
+    getAvatar("2201016114")
     console.log(user.auth.username)
     unityContext.send("GameObject", "GetUser", user.auth.username);
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
