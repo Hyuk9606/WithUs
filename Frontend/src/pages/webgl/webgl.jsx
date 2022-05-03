@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const unityContext = new UnityContext({
-  loaderUrl: "build/build.loader.js",
-  dataUrl: "build/build.data",
-  frameworkUrl: "build/build.framework.js",
-  codeUrl: "build/build.wasm",
+  loaderUrl: "Build/build.loader.js",
+  dataUrl: "Build/build.data",
+  frameworkUrl: "Build/build.framework.js",
+  codeUrl: "Build/build.wasm",
 });
 
 const GameContainer = styled.div`
@@ -21,6 +21,20 @@ const OpenViduContainer = styled.div`
 `
 
 export default function Webgl() {
+
+    // const [data, setData] = useState("");
+    //
+    // useEffect(function () {
+    //     unityContext.on("showCharactor", function (str) {
+    //         console.log(" data : ", str)
+    //         setData(str);
+    //     });
+    // }, []);
+    //
+    // useEffect(()=>{
+    //     console.log("리엑트에서 캐릭터 정보 : ", data);
+    //
+    // })
   const user = useSelector(state => state)
   const url = 'http://localhost:8080/api/v1/avatar'
   const [isStart, setIsStart] = useState(false);

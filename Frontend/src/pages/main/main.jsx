@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import LoginModal from '../../component/loginModal'
 import { useSelector, useDispatch } from 'react-redux';
+import Footer from '../../component/footer';
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -107,6 +108,7 @@ export default function Main() {
         @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
       </style>
       <LoginModal isModalOpen={isModalOpen} ModalClose={ModalClose}/>
+      <Footer />
     </>
   )
 }

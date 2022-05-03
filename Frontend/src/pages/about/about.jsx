@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Guide from "../../component/about/guide";
 import Preview from "../../component/about/preview";
 import Navbar from '../../component/navbar';
+import Footer from '../../component/footer';
 
 const Wrap = styled.div`
   font-family: 'Jua', sans-serif, cursive;
@@ -24,6 +25,7 @@ export default function About() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
         </style>
+        <Footer />
     </>
   )
 }
