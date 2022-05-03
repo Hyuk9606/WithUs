@@ -34,12 +34,6 @@ class Vidu extends Component {
     }
 
     componentDidUpdate(prevProps,prevState,snapshot) {
-        console.log("componentDidUpdate");
-        console.log(this.props.sessionName)
-        console.log("prevProps",prevProps);
-        console.log("prevState",prevState);
-        console.log("snapshot",snapshot);
-        
         if (prevProps.sessionName !== this.props.sessionName) {
             this.setState({
             mySessionId: this.props.sessionName
@@ -76,6 +70,20 @@ class Vidu extends Component {
                 mainStreamManager: stream
             });
         }
+    }
+    
+    micStatusChanage () {
+        // 소리 끄는거 mainStreamManager => 얘 자체 메서드로 소리, 스트리밍 다 조절가능
+        console.log(this.state.mainStreamManager.publishAudio(false))
+        let data = { isAudioActive: false }
+
+        // 상태 관리. 기능관련 x
+        const signalOptions = {
+            data: JSON.stringify(data),
+            type: 'userChanged',
+        };
+
+        console.log(this.state.session.signal(signalOptions))
     }
 
     deleteSubscriber(streamManager) {
@@ -244,6 +252,7 @@ class Vidu extends Component {
 
         return (
             <div className="container">
+                <button onClick={() => this.micStatusChanage()}>micChange</button>
                 {this.state.session !== undefined ? (
                     <div id="session">
                         <div id="session-header">
