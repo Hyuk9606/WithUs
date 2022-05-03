@@ -11,9 +11,8 @@ let localUser = new UserModel();
 class Vidu extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            mySessionId: 'SessionA',
+            mySessionId: this.props.sessionName,
             myUserName: 'Participant' + Math.floor(Math.random() * 100),
             session: undefined,
             mainStreamManager: undefined,
@@ -58,8 +57,20 @@ class Vidu extends Component {
 
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
+
     }
 
+    componentDidUpdate(prevProps,prevState,snapshot) {
+        if (prevProps.sessionName !== this.props.sessionName) {
+            this.setState({
+            mySessionId: this.props.sessionName
+            }, () => {
+                this.leaveSession()
+                this.getToken()
+                this.joinSession();
+            })
+        }
+        }
     componentWillUnmount() {
         window.removeEventListener('beforeunload', this.onbeforeunload);
     }
@@ -86,6 +97,20 @@ class Vidu extends Component {
                 mainStreamManager: stream
             });
         }
+    }
+    
+    micStatusChanage () {
+        // 소리 끄는거 mainStreamManager => 얘 자체 메서드로 소리, 스트리밍 다 조절가능
+        console.log(this.state.mainStreamManager.publishAudio(false))
+        let data = { isAudioActive: false }
+
+        // 상태 관리. 기능관련 x
+        const signalOptions = {
+            data: JSON.stringify(data),
+            type: 'userChanged',
+        };
+
+        console.log(this.state.session.signal(signalOptions))
     }
 
     deleteSubscriber(streamManager) {
@@ -208,7 +233,7 @@ class Vidu extends Component {
         this.setState({
             session: undefined,
             subscribers: [],
-            mySessionId: 'SessionA',
+            mySessionId: this.state.mySessionId,
             myUserName: 'Participant' + Math.floor(Math.random() * 100),
             mainStreamManager: undefined,
             publisher: undefined
@@ -222,44 +247,7 @@ class Vidu extends Component {
 
         return (
             <div className="container">
-                {this.state.session === undefined ? (
-                    <div id="join">
-                        <div id="img-div">
-                            <img src="resources/images/openvidu_grey_bg_transp_cropped.png" alt="OpenVidu logo" />
-                        </div>
-                        <div id="join-dialog" className="jumbotron vertical-center">
-                            <h1> Join a video session </h1>
-                            <form className="form-group" onSubmit={this.joinSession}>
-                                <p>
-                                    <label>Participant: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="userName"
-                                        value={myUserName}
-                                        onChange={this.handleChangeUserName}
-                                        required
-                                    />
-                                </p>
-                                <p>
-                                    <label> Session: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="sessionId"
-                                        value={mySessionId}
-                                        onChange={this.handleChangeSessionId}
-                                        required
-                                    />
-                                </p>
-                                <p className="text-center">
-                                    <input className="btn btn-lg btn-success" name="commit" type="submit" value="JOIN" />
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                ) : null}
-
+                <button onClick={() => this.micStatusChanage()}>micChange</button>
                 {this.state.session !== undefined ? (
                     <div id="session">
                         <div id="session-header">
