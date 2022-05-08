@@ -71,7 +71,7 @@ export default function LoginModal(props) {
         props.ModalClose()
         setOpen(false)
     }
-
+    
     useEffect(() => {
         if (props !== undefined) {
             setOpen(props.isModalOpen)
@@ -90,22 +90,35 @@ export default function LoginModal(props) {
             <Box sx={style}>
                 <Title>로그인</Title>
 
-                <a href={NAVER_AUTH_URL} style={{textDecoration:'none'}}>
-                    <LoginButtonBox>
-                        <NaverButton>네이버로그인</NaverButton>
-                    </LoginButtonBox>
-                </a>
-                <a href={KAKAO_AUTH_URL} style={{textDecoration:'none'}}>
-                    <LoginButtonBox>
-                        <KakaoButton>카카오로그인</KakaoButton>
-                    </LoginButtonBox>
-                </a>
-                <a href={GOOGLE_AUTH_URL} style={{textDecoration:'none'}}>
-                    <LoginButtonBox>
-                        <GoogleButton>구글로그인</GoogleButton>
-                    </LoginButtonBox>
-                </a>
+                <LoginButtonBox onClick={() => {
+                    window.open(
+                        `${NAVER_AUTH_URL}`,
+                        "_blank",
+                        "height=700,width=377,top=100,left=200,scrollbars=yes,resizable=yes"
+                        );
+                }}>
+                    <NaverButton>네이버로그인</NaverButton>
+                </LoginButtonBox>
 
+                <LoginButtonBox onClick={() => {
+                    window.open(
+                        `${KAKAO_AUTH_URL}`,
+                        "_blank",
+                        "height=700,width=600,top=100,left=200,scrollbars=yes,resizable=yes"
+                        );
+                }}>
+                    <KakaoButton>카카오로그인</KakaoButton>
+                </LoginButtonBox>
+
+                <LoginButtonBox onClick={() => {
+                    window.open(
+                        `${GOOGLE_AUTH_URL}`,
+                        "_blank",
+                        "height=600,width=577,top=100,left=200,scrollbars=yes,resizable=yes"
+                        );
+                }}>
+                    <GoogleButton>구글로그인</GoogleButton>
+                </LoginButtonBox>
             </Box>
         </Modal>
         <style>

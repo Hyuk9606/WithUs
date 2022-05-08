@@ -8,21 +8,24 @@ export default function Oauth() {
     const [token, setToken] = useState('');
     let navigate = useNavigate()
     const dispatch = useDispatch()
-    
+    const baseUrl = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_BACK_PORT
     useEffect(() => {
         const url = new URL(window.location.href)
         setToken(url.searchParams.get('token'))
-        axios.get('http://localhost:8080/api/v1/users', {
+        axios.get(baseUrl + 'api/v1/users', {
             headers : {
                 Authorization : `Bearer ${url.searchParams.get('token')}`
             }
         }).then((response) => 
         dispatch({type:"LOGIN", data:response, token:`${url.searchParams.get('token')}`})
         ).then(()=>
-        navigate('/')
+        window.opener.parent.location.reload()
+        ).then(()=> 
+        window.close()
         ).catch((e) => 
             console.log(e)
         )
+        
     },[])
 
   return (
