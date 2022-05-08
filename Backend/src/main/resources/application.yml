@@ -49,7 +49,7 @@ cors:
 ---
 server:
   ssl :
-    key-store: classpath:ssafy.p12
+    key-store: classpath:keystore.p12
     key-store-password: ssafywithus
     key-store-type: PKCS12
 
