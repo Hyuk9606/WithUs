@@ -19,6 +19,7 @@ public class AvatarController {
     @GetMapping("/{userId}")
     public ApiResponse getAvatar(@PathVariable String userId) {
         Avatar avatar = avatarService.getAvatar(userId);
+        if(avatar == null) return ApiResponse.success("avatar","null");
         String result = userId+"&"+avatar.getSettings();
         return ApiResponse.success("avatar", result);
     }
