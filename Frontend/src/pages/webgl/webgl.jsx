@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const unityContext = new UnityContext({
-  loaderUrl: "Build/build.loader.js",
-  dataUrl: "Build/build.data",
-  frameworkUrl: "Build/build.framework.js",
-  codeUrl: "Build/build.wasm",
+  loaderUrl: "Build/test.loader.js",
+  dataUrl: "Build/test.data",
+  frameworkUrl: "Build/test.framework.js",
+  codeUrl: "Build/test.wasm",
 });
 
 const GameContainer = styled.div`
@@ -121,14 +121,16 @@ export default function Webgl() {
         {/* <VideoRoomComponent sessionName={sessionName}/> */}
       </OpenViduContainer>
       <GameContainer>
-        <Unity unityContext={unityContext} 
-          style={{
-            width: "100%",
-            height: "85%",
-            justifySelf: 'center',
-            alignSelf: 'center'
-          }}
-        />;
+        <div id='unity-container'>
+          <Unity unityContext={unityContext} 
+            style={{
+              width: "100%",
+              height: "85%",
+              justifySelf: 'center',
+              alignSelf: 'center'
+            }}
+          />;
+        </div>
       </GameContainer>
       <button onClick={sendUsername}>button</button>
       <button onClick={click}>sessionChange</button>

@@ -49,7 +49,6 @@ export default function Navbar() {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state)
-    console.log(user.auth);
 
     let navigate = useNavigate()
 
