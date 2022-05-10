@@ -12,15 +12,21 @@ export default class OpenViduVideoComponent extends Component {
             this.props.streamManager.addVideoElement(this.videoRef.current);
         }
     }
-
+    
     componentDidMount() {
         if (this.props && !!this.videoRef) {
+            console.log('test')
             this.props.streamManager.addVideoElement(this.videoRef.current);
         }
+        console.log(this.props.streamManager)
     }
 
     render() {
-        return <video autoPlay={true} ref={this.videoRef} />;
+        return (
+            <>
+                {this.props.streamManager.stream.typeOfVideo === "CAMERA" ? <video autoPlay={true} ref={this.videoRef} style={{display:'none'}} /> : <video autoPlay={true} ref={this.videoRef} />}
+            </>
+        ) 
     }
 
 }

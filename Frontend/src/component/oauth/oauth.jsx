@@ -12,7 +12,7 @@ export default function Oauth() {
     useEffect(() => {
         const url = new URL(window.location.href)
         setToken(url.searchParams.get('token'))
-        axios.get(baseUrl + 'api/v1/users', {
+        axios.get(baseUrl + '/api/v1/users', {
             headers : {
                 Authorization : `Bearer ${url.searchParams.get('token')}`
             }

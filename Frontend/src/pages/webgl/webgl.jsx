@@ -4,12 +4,27 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 // import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 import axios from 'axios';
+import AWS from 'aws-sdk'
+
+const S3_BUCKET ='ssafy-withus';
+const REGION ='ap-northeast-2';
+
+AWS.config.update({
+  accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_ACCESSKEY
+})
+
+const myBucket = new AWS.S3({
+  params: { Bucket: S3_BUCKET},
+  region: REGION,
+})
+
 
 const unityContext = new UnityContext({
-  loaderUrl: "Build/test.loader.js",
-  dataUrl: "Build/test.data",
-  frameworkUrl: "Build/test.framework.js",
-  codeUrl: "Build/test.wasm",
+  loaderUrl: "Build/build.loader.js",
+  dataUrl: "Build/build.data",
+  frameworkUrl: "Build/build.framework.js",
+  codeUrl: "Build/build.wasm",
 });
 
 const GameContainer = styled.div`
@@ -56,6 +71,42 @@ export default function Webgl() {
     setToken(user.auth.token)
   },[])
 
+  const [progress , setProgress] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileInput = (e) => {
+    var inputFileName = e.target.files[0].name
+    var idxDot = inputFileName.lastIndexOf(".") + 1;
+    var extFile = inputFileName.substr(idxDot, inputFileName.length).toLowerCase();
+    if (extFile=="pdf"){
+        setSelectedFile(e.target.files[0]);
+    }else{
+        alert("Only jpg/jpeg and png files are allowed!");
+        document.getElementById("inputFile").value = "";
+    }     
+  }
+  // S3 업로드
+  const uploadFile = (file) => {
+    const fileName = "test.pdf"
+    const params = {
+        ACL: 'public-read',
+        Body: file,
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        ContentType: 'application/pdf'
+    };
+
+    myBucket.putObject(params)
+        .on('httpUploadProgress', (evt) => {
+            setProgress(Math.round((evt.loaded / evt.total) * 100))
+        })
+        .send((err) => {
+            if (err) console.log(err)
+        })
+
+}
+
+
   // 캐릭터 정보 받아오기
   function getAvatar (userId) {
     axios.get(url+"/"+userId, {headers: {
@@ -71,8 +122,8 @@ export default function Webgl() {
   unityContext.on("CallSaveAvatar",  function (settings) { saveAvatar(settings); })
 
   // 캐릭터 정보 저장하기
-  function saveAvatar (test) {
-    axios.post(url,test, {headers: {
+  function saveAvatar (build) {
+    axios.post(url,build, {headers: {
       Authorization: `Bearer ${token}`,
       'Content-type' : 'text/plane'
     }},
@@ -117,6 +168,8 @@ export default function Webgl() {
 
   return (
     <>
+      <input id="inputFile" type="file" accept=".pdf" onChange={handleFileInput}/>
+        <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
       <OpenViduContainer>
         {/* <VideoRoomComponent sessionName={sessionName}/> */}
       </OpenViduContainer>

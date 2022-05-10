@@ -2,10 +2,12 @@ import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
+import UserModel from './models/user-model'
 
-const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
+const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':8443';
 const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
+var localUser = new UserModel();
 
 class Vidu extends Component {
     constructor(props) {
@@ -17,9 +19,9 @@ class Vidu extends Component {
             mainStreamManager: undefined,
             publisher: undefined,
             subscribers: [],
-            isMuted: true
+            isMuted: true,
+            localUser : undefined,
         };
-
         this.joinSession = this.joinSession.bind(this);
         this.leaveSession = this.leaveSession.bind(this);
         this.switchCamera = this.switchCamera.bind(this);
@@ -109,6 +111,51 @@ class Vidu extends Component {
         }
     }
 
+    screenShare() {
+        const videoSource = navigator.userAgent.indexOf('Firefox') !== -1 ? 'window' : 'screen';
+        const publisher = this.OV.initPublisher(
+            undefined,
+            {
+                videoSource: videoSource,
+                publishAudio: localUser.isAudioActive(),
+                publishVideo: localUser.isVideoActive(),
+                mirror: false,
+            },
+            (error) => {
+                if (error && error.name === 'SCREEN_EXTENSION_NOT_INSTALLED') {
+                    this.setState({ showExtensionDialog: true });
+                } else if (error && error.name === 'SCREEN_SHARING_NOT_SUPPORTED') {
+                    alert('Your browser does not support screen sharing');
+                } else if (error && error.name === 'SCREEN_EXTENSION_DISABLED') {
+                    alert('You need to enable screen sharing extension');
+                } else if (error && error.name === 'SCREEN_CAPTURE_DENIED') {
+                    alert('You need to choose a window or application to share');
+                }
+            },
+        );
+
+        publisher.once('accessAllowed', () => {
+            this.state.session.unpublish(localUser.getStreamManager());
+            localUser.setStreamManager(publisher);
+            this.state.session.publish(localUser.getStreamManager()).then(() => {
+                localUser.setScreenShareActive(true);
+                this.setState({ localUser: localUser }, () => {
+                    this.sendSignalUserChanged({ isScreenShareActive: localUser.isScreenShareActive() });
+                });
+            });
+        });
+        publisher.on('streamPlaying', () => {
+            this.updateLayout();
+            publisher.videos[0].video.parentElement.classList.remove('custom-class');
+        });
+
+    }
+
+    stopScreenShare() {
+        this.state.session.unpublish(localUser.getStreamManager());
+        this.connectWebCam();
+    }
+
     joinSession() {
         // --- 1) Get an OpenVidu object ---
 
@@ -175,7 +222,7 @@ class Vidu extends Component {
                                 audioSource: undefined, // The source of audio. If undefined default microphone
                                 videoSource: videoDevices[0].deviceId, // The source of video. If undefined default webcam
                                 publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
-                                publishVideo: true, // Whether you want to start publishing with your video enabled or not
+                                publishVideo: false, // Whether you want to start publishing with your video enabled or not
                                 resolution: '640x480', // The resolution of your video
                                 frameRate: 30, // The frame rate of your video
                                 insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
@@ -264,6 +311,7 @@ class Vidu extends Component {
 
         return (
             <div className="container">
+                <button onClick={() => this.screenShare()}>screenshare</button>
                 <button onClick={() => this.micStatusChanage()}>micChange</button>
                 {this.state.session !== undefined ? (
                     <div id="session">
