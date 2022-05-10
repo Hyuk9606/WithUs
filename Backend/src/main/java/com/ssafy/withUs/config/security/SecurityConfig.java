@@ -160,15 +160,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         corsConfig.setAllowedHeaders(Arrays.asList(corsProperties.getAllowedHeaders().split(",")));
         corsConfig.setAllowedMethods(Arrays.asList(corsProperties.getAllowedMethods().split(",")));
         corsConfig.setAllowedOrigins(Arrays.asList(corsProperties.getAllowedOrigins().split(",")));
-        corsConfig.addAllowedOrigin("http://localhost:3000");
-        corsConfig.addAllowedOrigin("http://k6c103.p.ssafy.io");
-        corsConfig.addAllowedOrigin("http://k6c103.p.ssafy.io:80");
-        corsConfig.addAllowedOrigin("http://k6c103.p.ssafy.io:3000");
         corsConfig.addAllowedOrigin("https://localhost:3000");
         corsConfig.addAllowedOrigin("https://k6c103.p.ssafy.io");
         corsConfig.addAllowedOrigin("https://k6c103.p.ssafy.io:80");
         corsConfig.addAllowedOrigin("https://k6c103.p.ssafy.io:3000");
         corsConfig.addAllowedOrigin("https://withus.ssafy.io");
+        corsConfig.addAllowedOrigin("https://withus.ssafy.io:80");
+        corsConfig.addAllowedOrigin("https://withus.ssafy.io:3000");
+        
     
         corsConfig.setAllowCredentials(true);
         corsConfig.setMaxAge(corsConfig.getMaxAge());
