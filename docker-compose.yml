@@ -2,7 +2,7 @@ version: "3"
 
 services:
   backend: # 컨테이너 이름
-    image: skdltm117/withus-backend:0.4 # 실행할 이미지
+    image: skdltm117/withus-backend:0.5 # 실행할 이미지
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://withus-mysql:3306/withus?useUnicode=yes&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Seoul"
       SPRING_DATASOURCE_USERNAME: "root"

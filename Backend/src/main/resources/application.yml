@@ -156,7 +156,7 @@ spring:
   # ??? ?? ??
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://k6c103.p.ssafy.io:3306/withus?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://withus.ssafy.io:3306/withus?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     hikari:
@@ -172,10 +172,10 @@ spring:
 app:
   oauth2:
     authorizedRedirectUris:
-      - https://k6c103.p.ssafy.io/oauth/redirect
+      - https://withus.ssafy.io/oauth/redirect
 
 cors:
-  allowed-origins: 'https://k6c103.p.ssafy.io'
+  allowed-origins: 'https://withus.ssafy.io'
   allowed-methods: GET,POST,PUT,DELETE,OPTIONS
   allowed-headers: '*'
   max-age: 3600
