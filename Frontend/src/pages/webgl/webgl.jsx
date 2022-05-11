@@ -73,6 +73,8 @@ export default function Webgl() {
 
   const [progress , setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [className, setClassName] = useState('');
+  const [pdfPage, setPdfPage] = useState(0);
 
   const handleFileInput = (e) => {
     var inputFileName = e.target.files[0].name
@@ -80,14 +82,32 @@ export default function Webgl() {
     var extFile = inputFileName.substr(idxDot, inputFileName.length).toLowerCase();
     if (extFile=="pdf"){
         setSelectedFile(e.target.files[0]);
+
+        var reader = new FileReader();
+        reader.readAsBinaryString(e.target.files[0]);
+
+        reader.onloadend = function(){
+          var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
+          setPdfPage(count)
+        }
+        
+        console.log(e.target.files[0])
+        uploadFile(e.target.files[0])
+        document.getElementById("inputFile").value = "";
     }else{
         alert("Only jpg/jpeg and png files are allowed!");
         document.getElementById("inputFile").value = "";
     }     
   }
+
+  unityContext.on("uploadPDF", function (className) {
+    console.log(className)
+    setClassName(className)
+    document.getElementById("inputFile").click()
+  })
   // S3 업로드
   const uploadFile = (file) => {
-    const fileName = "test.pdf"
+    const fileName = className + '.pdf'
     const params = {
         ACL: 'public-read',
         Body: file,
@@ -95,14 +115,17 @@ export default function Webgl() {
         Key: fileName,
         ContentType: 'application/pdf'
     };
-
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {
             setProgress(Math.round((evt.loaded / evt.total) * 100))
+            // 업로드 성공했다고 보내기.
+            unityContext.send("WebGLAPI_Usage", "GetUrl", className)
+            unityContext.send("WebGLAPI_Usage", "OnMouseDown", pdfPage)
         })
         .send((err) => {
             if (err) console.log(err)
         })
+        
 
 }
 
@@ -168,8 +191,7 @@ export default function Webgl() {
 
   return (
     <>
-      <input id="inputFile" type="file" accept=".pdf" onChange={handleFileInput}/>
-        <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
+      <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
       <OpenViduContainer>
         {/* <VideoRoomComponent sessionName={sessionName}/> */}
       </OpenViduContainer>

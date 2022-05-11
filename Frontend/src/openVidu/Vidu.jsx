@@ -111,50 +111,6 @@ class Vidu extends Component {
         }
     }
 
-    screenShare() {
-        const videoSource = navigator.userAgent.indexOf('Firefox') !== -1 ? 'window' : 'screen';
-        const publisher = this.OV.initPublisher(
-            undefined,
-            {
-                videoSource: videoSource,
-                publishAudio: localUser.isAudioActive(),
-                publishVideo: localUser.isVideoActive(),
-                mirror: false,
-            },
-            (error) => {
-                if (error && error.name === 'SCREEN_EXTENSION_NOT_INSTALLED') {
-                    this.setState({ showExtensionDialog: true });
-                } else if (error && error.name === 'SCREEN_SHARING_NOT_SUPPORTED') {
-                    alert('Your browser does not support screen sharing');
-                } else if (error && error.name === 'SCREEN_EXTENSION_DISABLED') {
-                    alert('You need to enable screen sharing extension');
-                } else if (error && error.name === 'SCREEN_CAPTURE_DENIED') {
-                    alert('You need to choose a window or application to share');
-                }
-            },
-        );
-
-        publisher.once('accessAllowed', () => {
-            this.state.session.unpublish(localUser.getStreamManager());
-            localUser.setStreamManager(publisher);
-            this.state.session.publish(localUser.getStreamManager()).then(() => {
-                localUser.setScreenShareActive(true);
-                this.setState({ localUser: localUser }, () => {
-                    this.sendSignalUserChanged({ isScreenShareActive: localUser.isScreenShareActive() });
-                });
-            });
-        });
-        publisher.on('streamPlaying', () => {
-            this.updateLayout();
-            publisher.videos[0].video.parentElement.classList.remove('custom-class');
-        });
-
-    }
-
-    stopScreenShare() {
-        this.state.session.unpublish(localUser.getStreamManager());
-        this.connectWebCam();
-    }
 
     joinSession() {
         // --- 1) Get an OpenVidu object ---
@@ -311,7 +267,7 @@ class Vidu extends Component {
 
         return (
             <div className="container">
-                <button onClick={() => this.screenShare()}>screenshare</button>
+
                 <button onClick={() => this.micStatusChanage()}>micChange</button>
                 {this.state.session !== undefined ? (
                     <div id="session">
