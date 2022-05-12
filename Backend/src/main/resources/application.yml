@@ -39,7 +39,7 @@ spring:
 app:
   oauth2:
     authorizedRedirectUris:
-      - https://localhost:3000/oauth/redirect
+      - http://localhost:3000/oauth/redirect
 
 cors:
   allowed-origins: 'https://localhost:3000'
@@ -47,11 +47,7 @@ cors:
   allowed-headers: '*'
   max-age: 3600
 ---
-server:
-  ssl :
-    key-store: classpath:keystore.p12
-    key-store-password: ssafywithus
-    key-store-type: PKCS12
+
 
 spring:
   config:
@@ -149,6 +145,11 @@ springdoc:
 
 
 ---
+server:
+  ssl :
+    key-store: classpath:keystore.p12
+    key-store-password: ssafywithus
+    key-store-type: PKCS12
 spring:
   config:
     activate:
