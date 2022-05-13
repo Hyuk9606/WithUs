@@ -14,13 +14,14 @@ class Vidu extends Component {
         super(props);
         this.state = {
             mySessionId: this.props.sessionName,
-            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            myUserName: this.props.myUserName,
             session: undefined,
             mainStreamManager: undefined,
             publisher: undefined,
             subscribers: [],
             isMuted: true,
             localUser : undefined,
+            audioChange : this.props.audioChange,
         };
         this.joinSession = this.joinSession.bind(this);
         this.leaveSession = this.leaveSession.bind(this);
@@ -33,10 +34,13 @@ class Vidu extends Component {
 
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
-
-    }
+    }   
 
     componentDidUpdate(prevProps,prevState,snapshot) {
+        if (prevProps.audioChange !== this.props.audioChange) {
+            this.micStatusChanage()
+        }
+
         if (prevProps.sessionName !== this.props.sessionName) {
             this.setState({
                 mySessionId: this.props.sessionName
@@ -76,8 +80,6 @@ class Vidu extends Component {
     }
 
     micStatusChanage () {
-        // 소리 끄는거 mainStreamManager => 얘 자체 메서드로 소리, 스트리밍 다 조절가능
-        console.log("===========",this.state)
         if(this.state.isMuted === true){
             this.setState({isMuted: false})
             this.state.mainStreamManager.publishAudio(false);
@@ -164,7 +166,7 @@ class Vidu extends Component {
                     mySession
                         .connect(
                             token,
-                            { clientData: this.state.myUserName },
+                            { clientData: this.props.myUserName },
                         )
                         .then(async () => {
                             var devices = await this.OV.getDevices();
@@ -177,7 +179,7 @@ class Vidu extends Component {
                             let publisher = this.OV.initPublisher(undefined, {
                                 audioSource: undefined, // The source of audio. If undefined default microphone
                                 videoSource: videoDevices[0].deviceId, // The source of video. If undefined default webcam
-                                publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+                                publishAudio: false, // Whether you want to start publishing with your audio unmuted or not
                                 publishVideo: false, // Whether you want to start publishing with your video enabled or not
                                 resolution: '640x480', // The resolution of your video
                                 frameRate: 30, // The frame rate of your video
@@ -220,7 +222,7 @@ class Vidu extends Component {
             session: undefined,
             subscribers: [],
             mySessionId: this.state.mySessionId,
-            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            myUserName: this.props.myUserName,
             mainStreamManager: undefined,
             publisher: undefined
         });
@@ -263,12 +265,10 @@ class Vidu extends Component {
 
     render() {
         const mySessionId = this.state.mySessionId;
-        const myUserName = this.state.myUserName;
+        const myUserName = this.props.myUserName;
 
         return (
-            <div className="container">
-
-                <button onClick={() => this.micStatusChanage()}>micChange</button>
+            <div className="container" style={{display:'none'}}>
                 {this.state.session !== undefined ? (
                     <div id="session">
                         <div id="session-header">

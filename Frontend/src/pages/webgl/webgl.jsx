@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 // import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 import axios from 'axios';
 import AWS from 'aws-sdk'
+import Navbar from '../../component/navbar';
+import Vidu from '../../openVidu/Vidu'
 
 const S3_BUCKET ='ssafy-withus';
 const REGION ='ap-northeast-2';
@@ -29,10 +31,6 @@ const unityContext = new UnityContext({
 
 const GameContainer = styled.div`
 
-`
-
-const OpenViduContainer = styled.div`
-  z-index: -1;
 `
 
 export default function Webgl() {
@@ -67,14 +65,30 @@ export default function Webgl() {
         "Accessory": 11,
         "Item1": -1
     }`
-  useEffect(() => {
-    setToken(user.auth.token)
-  },[])
-
   const [progress , setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [className, setClassName] = useState('');
   const [pdfPage, setPdfPage] = useState(0);
+  const [userId, setUserId] = useState('');
+  const [audioChange, setAudioChange] = useState(0);
+
+  
+  unityContext.on("audioChange" , function () {
+    if (audioChange === 0) {
+      setAudioChange(1)
+    } else if (audioChange === 1) {
+      setAudioChange(0)
+    }
+  })
+
+
+  useEffect(() => {
+    setToken(user.auth.token)
+    setUserId(user.auth.userId)
+  },[])
+
+
+  
 
   const handleFileInput = (e) => {
     var inputFileName = e.target.files[0].name
@@ -90,8 +104,6 @@ export default function Webgl() {
           var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
           setPdfPage(count)
         }
-        
-        console.log(e.target.files[0])
         uploadFile(e.target.files[0])
         document.getElementById("inputFile").value = "";
     }else{
@@ -99,9 +111,8 @@ export default function Webgl() {
         document.getElementById("inputFile").value = "";
     }     
   }
-
+  
   unityContext.on("uploadPDF", function (className) {
-    console.log(className)
     setClassName(className)
     document.getElementById("inputFile").click()
   })
@@ -118,7 +129,10 @@ export default function Webgl() {
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {
             setProgress(Math.round((evt.loaded / evt.total) * 100))
+            
             // 업로드 성공했다고 보내기.
+            unityContext.send("WebGLAPI_Usage", "GetProviderId", user.auth.userId)
+
             unityContext.send("WebGLAPI_Usage", "GetUrl", className)
             unityContext.send("WebGLAPI_Usage", "OnMouseDown", pdfPage)
         })
@@ -156,17 +170,37 @@ export default function Webgl() {
     })
   }
 
-  // 디버깅 테스트
-  const [sessionName, SetSessionName] = useState('lobby')
+  // 음성 채팅 세션
+  const [sessionName, SetSessionName] = useState('')
 
-  function click() {
-    if (sessionName === 'lobby'){
-      SetSessionName('classroom')
-    } else{
-      SetSessionName('lobby')
-    }
-    console.log(sessionName)
-  }
+  // 게임 처음 접속 로비 세션 입장
+  unityContext.on("loadingGame", function(session) {
+    SetSessionName(session)
+  })
+  
+  // 포탈 이동시 오픈비두 세션이동
+
+  // 로비
+  unityContext.on("goToLobby", function(session) {
+    SetSessionName(session);
+  })
+  // 로비 2층
+  unityContext.on("goToLobby2", function(session) {
+    SetSessionName(session)
+  })
+  // 강의실1
+  unityContext.on("goToClass1", function(session) {
+    SetSessionName(session)
+  })
+  // 강의실2
+  unityContext.on("goToClass2", function(session) {
+    SetSessionName(session)
+  })
+  // 강의실3
+  unityContext.on("goToClass3", function(session) {
+    SetSessionName(session)
+  })
+
 
 
   unityContext.on("ClickStartbtn" , function() {
@@ -181,6 +215,12 @@ export default function Webgl() {
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
     
   }
+
+  useEffect(() => {
+    // 사용자 id 보내기
+    unityContext.send("WebGLAPI_Usage", "UserId", user.auth.userId);
+  }, [])
+
   useEffect(() => {
     console.log(user.auth.username)
     unityContext.send("GameObject", "GetUser", user.auth.username);
@@ -191,24 +231,21 @@ export default function Webgl() {
 
   return (
     <>
+      <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
-      <OpenViduContainer>
-        {/* <VideoRoomComponent sessionName={sessionName}/> */}
-      </OpenViduContainer>
+      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
       <GameContainer>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
+
               width: "100%",
-              height: "85%",
               justifySelf: 'center',
               alignSelf: 'center'
             }}
-          />;
+          />
         </div>
       </GameContainer>
-      <button onClick={sendUsername}>button</button>
-      <button onClick={click}>sessionChange</button>
     </>
   )
 }

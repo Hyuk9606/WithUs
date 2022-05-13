@@ -10,6 +10,7 @@ import {BsPersonCircle} from "react-icons/bs"
 import {GiMagnifyingGlass} from "react-icons/gi"
 import LoginModal from './loginModal';
 import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 const NavBox = styled.div`
     width: 100%;
@@ -47,6 +48,8 @@ export default function Navbar() {
 
     const open = Boolean(anchorEl);
 
+    const Swal = require('sweetalert2')
+    
     const dispatch = useDispatch()
     const user = useSelector(state => state)
 
@@ -72,8 +75,19 @@ export default function Navbar() {
         setAnchorEl(null);
     }
     const handleLogoutClick = () => {
-        dispatch({type:"LOGOUT"});
-        setAnchorEl(null);
+        Swal.fire({
+            title: '로그아웃 하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '로그아웃',
+            cancelButtonText: '취소'
+        }).then(res => {
+            dispatch({type:"LOGOUT"});
+            setAnchorEl(null);
+            navigate("/")
+        })
     }
 
     const ModalClose = () => {
