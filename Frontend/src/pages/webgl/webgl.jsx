@@ -34,20 +34,6 @@ const GameContainer = styled.div`
 `
 
 export default function Webgl() {
-
-    // const [data, setData] = useState("");
-    //
-    // useEffect(function () {
-    //     unityContext.on("showCharactor", function (str) {
-    //         console.log(" data : ", str)
-    //         setData(str);
-    //     });
-    // }, []);
-    //
-    // useEffect(()=>{
-    //     console.log("리엑트에서 캐릭터 정보 : ", data);
-    //
-    // })
   const user = useSelector(state => state)
   const url = process.env.REACT_APP_BASE_URL + '/api/v1/avatar'
   const [isStart, setIsStart] = useState(false);
@@ -65,7 +51,12 @@ export default function Webgl() {
         "Accessory": 11,
         "Item1": -1
     }`
-  const [progress , setProgress] = useState(0);
+
+  const [progression, setProgression] = useState(0); // Webgl 로딩
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const [progress , setProgress] = useState(0); // S3 업로드 로딩
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [className, setClassName] = useState('');
   const [pdfPage, setPdfPage] = useState(0);
@@ -83,6 +74,12 @@ export default function Webgl() {
 
 
   useEffect(() => {
+    unityContext.on("progress", function (progression) {
+      setProgression(progression);
+    });
+    unityContext.on("loaded", function () {
+      setIsLoaded(true);
+    });
     setToken(user.auth.token)
     setUserId(user.auth.userId)
   },[])
@@ -234,6 +231,7 @@ export default function Webgl() {
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
       <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
+      <p style={{margin:"30% auto 0 auto", display: isLoaded ? "none" : "visible"}}>Loading {progression * 100} percent...</p>
       <GameContainer>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
