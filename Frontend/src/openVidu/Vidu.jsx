@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import UserModel from './models/user-model'
 
-const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':8443';
+const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
 const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
 var localUser = new UserModel();
@@ -31,7 +31,6 @@ class Vidu extends Component {
         this.handleMainVideoStream = this.handleMainVideoStream.bind(this);
         this.onbeforeunload = this.onbeforeunload.bind(this);
     }
-
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
     }   
@@ -82,18 +81,13 @@ class Vidu extends Component {
     micStatusChanage () {
         if(this.state.isMuted === true){
             this.setState({isMuted: false})
-            this.state.mainStreamManager.publishAudio(false);
+            this.state.mainStreamManager.publishAudio(true);
         }else {
             this.setState({isMuted: true})
-            this.state.mainStreamManager.publishAudio(true);
+            this.state.mainStreamManager.publishAudio(false);
         }
 
         let data = { isAudioActive: this.state.isMuted }
-        // console.log("=======", this.state.publisher.stream.streamManager.stream.audioActive);
-        // this.setState({
-        //     publisher: 0
-        // })
-        // 상태 관리. 기능관련 x
         const signalOptions = {
             data: JSON.stringify(data),
             type: 'userChanged',
@@ -197,6 +191,8 @@ class Vidu extends Component {
                                 mainStreamManager: publisher,
                                 publisher: publisher,
                             });
+                            this.setState({isMuted: true})
+                            this.state.mainStreamManager.publishAudio(true);
                         })
                         .catch((error) => {
                             console.log('There was an error connecting to the session:', error.code, error.message);
@@ -266,7 +262,6 @@ class Vidu extends Component {
     render() {
         const mySessionId = this.state.mySessionId;
         const myUserName = this.props.myUserName;
-
         return (
             <div className="container" style={{display:'none'}}>
                 {this.state.session !== undefined ? (

@@ -15,10 +15,8 @@ export default class OpenViduVideoComponent extends Component {
     
     componentDidMount() {
         if (this.props && !!this.videoRef) {
-            console.log('test')
             this.props.streamManager.addVideoElement(this.videoRef.current);
         }
-        console.log(this.props.streamManager)
     }
 
     render() {
