@@ -7,6 +7,7 @@ import axios from 'axios';
 import AWS from 'aws-sdk'
 import Navbar from '../../component/navbar';
 import Vidu from '../../openVidu/Vidu'
+import Loadingbar from '../../component/Loadingbar'
 
 const S3_BUCKET ='ssafy-withus';
 const REGION ='ap-northeast-2';
@@ -31,6 +32,39 @@ const unityContext = new UnityContext({
 
 const GameContainer = styled.div`
 
+`
+
+const LoadingPageContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+`
+const LoadingImg = styled.img`
+  width: 100%;
+  height: 100vh;
+`
+const LoadingContent = styled.div`
+	text-align: center;
+	position: absolute;
+  width: 100%;
+  height: 10%;
+	top: 20%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+`
+const LoadingText = styled.div`
+  margin-top: 2%;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+`
+const Title = styled.div`
+  text-align: center;
+  font-size: 8vw;
+  background-image: -webkit-linear-gradient(right, #d9a7c7, #fffcdc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 5s infinite linear;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 `
 
 export default function Webgl() {
@@ -231,12 +265,22 @@ export default function Webgl() {
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
       <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
-      <p style={{margin:"30% auto 0 auto", display: isLoaded ? "none" : "visible"}}>Loading {progression * 100} percent...</p>
-      <GameContainer>
+      <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
+        <LoadingImg src="/loading.png" />
+        <LoadingContent>
+          <Title>With Us</Title>
+          <img src='logo2.png' style={{marginBottom:"5%", width:"40vw", height:'30vh'}}/>
+          <Loadingbar bgcolor='black' completed={parseInt(progression * 100)}/>
+          {parseInt(progression * 100) < 70 ? 
+          <LoadingText>로딩중 입니다.</LoadingText> : 
+          <LoadingText>거의 다 왔어요.</LoadingText>}
+        </LoadingContent>
+      </LoadingPageContainer>
+      <GameContainer style={{display : isLoaded ? "inline" : "none"}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
-
+              height: "100vh",
               width: "100%",
               justifySelf: 'center',
               alignSelf: 'center'
@@ -244,6 +288,17 @@ export default function Webgl() {
           />
         </div>
       </GameContainer>
+      <style>
+        {`@-webkit-keyframes hue {
+          from {
+            -webkit-filter: hue-rotate(180deg);
+          }
+          to {
+            -webkit-filter: hue-rotate(-180deg);
+          }
+        }`}
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+      </style>
     </>
   )
 }

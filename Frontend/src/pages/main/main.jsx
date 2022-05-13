@@ -20,7 +20,7 @@ const Title = styled.div`
   background-image: -webkit-linear-gradient(right, #d9a7c7, #fffcdc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-animation: hue 10s infinite linear;
+  -webkit-animation: hue 5s infinite linear;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 `
 
