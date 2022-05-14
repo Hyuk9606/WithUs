@@ -63,11 +63,9 @@ export default function Navbar() {
     };
 
     const handleHomeClick = () => {
-        setAnchorEl(null);
         window.location.replace('https://withus.ssafy.io/')
     }
     const handleAboutClick = () => {
-        setAnchorEl(null);
         window.location.replace('https://withus.ssafy.io/about')
     }
     const handleLoginClick = () => {
@@ -85,7 +83,6 @@ export default function Navbar() {
             cancelButtonText: '취소'
         }).then(res => {
             dispatch({type:"LOGOUT"});
-            setAnchorEl(null);
             window.location.replace('https://withus.ssafy.io/')
         })
     }
