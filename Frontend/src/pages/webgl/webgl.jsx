@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Unity, { UnityContext } from "react-unity-webgl";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-// import VideoRoomComponent from '../../openVidu/components/VideoRoomComponent'
 import axios from 'axios';
 import AWS from 'aws-sdk'
 import Navbar from '../../component/navbar';
 import Vidu from '../../openVidu/Vidu'
-import Loadingbar from '../../component/Loadingbar'
+import Loadingbar from '../../component/loading/Loadingbar'
+import LoadingSlider from '../../component/loading/loadingSlider';
 
 const S3_BUCKET ='ssafy-withus';
 const REGION ='ap-northeast-2';
@@ -263,18 +263,17 @@ export default function Webgl() {
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
       <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
-      <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
-        <LoadingImg src="/loading.png" />
+      <LoadingPageContainer style={{display : isLoaded ? "block" : "block"}}>
         <LoadingContent>
           <Title>With Us</Title>
-          <img src='logo2.png' style={{marginBottom:"5%", width:"40vw", height:'30vh'}}/>
+          <LoadingSlider />
           <Loadingbar bgcolor='black' completed={parseInt(progression * 100)}/>
           {parseInt(progression * 100) < 70 ? 
           <LoadingText>로딩중 입니다.</LoadingText> : 
           <LoadingText>거의 다 왔어요.</LoadingText>}
         </LoadingContent>
       </LoadingPageContainer>
-      <GameContainer style={{display : isLoaded ? "block" : "none"}}>
+      <GameContainer style={{display : isLoaded ? "none" : "none"}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{

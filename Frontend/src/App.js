@@ -4,8 +4,7 @@ import Oauth from './component/oauth/oauth'
 import About from './pages/about/about';
 import Webgl from './pages/webgl/webgl';
 import LoginModal from './component/loginModal';
-import Footer from './component/footer';
-
+import LoadingSlider from './component/loading/loadingSlider'
 
 function App() {
 
@@ -19,6 +18,7 @@ function App() {
           <Route path="/oauth2/redirect" element={<Oauth/>}/>
           <Route path="/about" element={<About/>} />
           <Route path="/webgl" element={<Webgl/>} />
+          <Route path="/test" element={<LoadingSlider/>} />
         </Routes>
       </BrowserRouter>
     </div>

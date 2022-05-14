@@ -4,7 +4,7 @@ const Loadingbar = (props) => {
   const { bgcolor, completed } = props;
 
   const containerStyles = {
-    height: 50,
+    height: 40,
     width: '90%',
     margin : 'auto',
     backgroundColor: "#e0e0de",
@@ -20,7 +20,7 @@ const Loadingbar = (props) => {
   }
 
   const labelStyles = {
-    lineHeight : "45px",
+    lineHeight : "35px",
     height: "100%",
     paddingRight : '10px',
     margin: '5px',
