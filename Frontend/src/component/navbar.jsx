@@ -14,7 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 const NavBox = styled.div`
     width: 100%;
-    height: 76px;
+    height: 70px;
     background-color: #166678;
     display: flex;
     justify-content: space-between;
@@ -63,12 +63,12 @@ export default function Navbar() {
     };
 
     const handleHomeClick = () => {
-        navigate('/')
         setAnchorEl(null);
+        window.location.replace('https://withus.ssafy.io/')
     }
     const handleAboutClick = () => {
-        navigate('/about')
         setAnchorEl(null);
+        window.location.replace('https://withus.ssafy.io/about')
     }
     const handleLoginClick = () => {
         setIsModalOpen(true);
@@ -86,7 +86,7 @@ export default function Navbar() {
         }).then(res => {
             dispatch({type:"LOGOUT"});
             setAnchorEl(null);
-            navigate("/")
+            window.location.replace('https://withus.ssafy.io/')
         })
     }
 

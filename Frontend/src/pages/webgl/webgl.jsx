@@ -276,11 +276,12 @@ export default function Webgl() {
           <LoadingText>거의 다 왔어요.</LoadingText>}
         </LoadingContent>
       </LoadingPageContainer>
-      <GameContainer style={{display : isLoaded ? "inline" : "none"}}>
+      <GameContainer style={{display : isLoaded ? "block" : "none"}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
-              height: "100vh",
+              marginTop:"70px",
+              height: "91vh",
               width: "100%",
               justifySelf: 'center',
               alignSelf: 'center'
