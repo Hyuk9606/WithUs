@@ -263,7 +263,7 @@ export default function Webgl() {
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
       <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
-      <LoadingPageContainer style={{display : isLoaded ? "block" : "block"}}>
+      <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
         <LoadingContent>
           <Title>With Us</Title>
           <LoadingSlider />
@@ -273,7 +273,7 @@ export default function Webgl() {
           <LoadingText>거의 다 왔어요.</LoadingText>}
         </LoadingContent>
       </LoadingPageContainer>
-      <GameContainer style={{display : isLoaded ? "none" : "none"}}>
+      <GameContainer style={{display : isLoaded ? "block" : "none"}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
