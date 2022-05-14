@@ -6,8 +6,8 @@ import styled from "styled-components";
 
 
 const LoadingImg = styled.img`
-    width : 500px;
-    height : 300px;
+    width : 800px;
+    height : 450px;
     margin : 0 auto 0 auto;
 `
 

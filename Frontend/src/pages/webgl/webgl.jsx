@@ -47,7 +47,7 @@ const LoadingContent = styled.div`
 	position: absolute;
   width: 100%;
   height: 10%;
-	top: 20%;
+	top: 15%;
 	left: 50%;
 	transform: translate( -50%, -50% );
 `
@@ -265,7 +265,7 @@ export default function Webgl() {
       <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
       <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
         <LoadingContent>
-          <Title>With Us</Title>
+          {/* <Title>With Us</Title> */}
           <LoadingSlider />
           <Loadingbar bgcolor='black' completed={parseInt(progression * 100)}/>
           {parseInt(progression * 100) < 70 ? 
