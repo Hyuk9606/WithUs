@@ -16,7 +16,7 @@ const Title = styled.div`
   padding-top:10% ;
   padding-bottom: 5%;
   text-align: center;
-  font-size: 100px;
+  font-size: 8vw;
   background-image: -webkit-linear-gradient(right, #d9a7c7, #fffcdc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -30,7 +30,7 @@ const ButtonBox = styled.div`
 
 const StartButton = styled.button`
   background-color: #B9F8D3;
-  font-size: 50px;
+  font-size: 4vw;
   color: white;
   border: 1px solid #B9F8D3;
   border-radius: 20px;
@@ -40,7 +40,7 @@ const StartButton = styled.button`
 `
 const ContentBox = styled.div`
   text-align: center;
-  font-size: 45px;
+  font-size: 3vw;
   padding-left: 10%;
   padding-right: 10%;
   color : white;

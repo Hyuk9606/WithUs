@@ -69,7 +69,7 @@ const Title = styled.div`
 
 export default function Webgl() {
   const user = useSelector(state => state)
-  const url = process.env.REACT_APP_BASE_URL + '/api/v1/avatar'
+  const url = process.env.REACT_APP_BASE_URL+ process.env.REACT_APP_BACK_PORT  + '/api/v1/avatar'
   const [isStart, setIsStart] = useState(false);
   const [charaterData, setCharaterData] = useState('');
   const [token, setToken] = useState('');
