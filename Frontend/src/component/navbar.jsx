@@ -82,10 +82,8 @@ export default function Navbar() {
             confirmButtonText: '로그아웃',
             cancelButtonText: '취소'
         }).then(res => {
-            if (res.isConfirmed === true) {
-                dispatch({type:"LOGOUT"});
-                window.location.replace('https://withus.ssafy.io/')
-            }
+            dispatch({type:"LOGOUT"});
+            window.location.replace('https://withus.ssafy.io/')
         })
     }
 

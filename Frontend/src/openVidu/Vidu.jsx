@@ -93,7 +93,6 @@ class Vidu extends Component {
             type: 'userChanged',
         };
 
-        console.log(this.state.session.signal(signalOptions))
     }
 
     deleteSubscriber(streamManager) {
@@ -335,7 +334,6 @@ class Vidu extends Component {
                     },
                 })
                 .then((response) => {
-                    console.log('CREATE SESION', response);
                     resolve(response.data.id);
                 })
                 .catch((response) => {
@@ -376,7 +374,6 @@ class Vidu extends Component {
                     },
                 })
                 .then((response) => {
-                    console.log('TOKEN', response);
                     resolve(response.data.token);
                 })
                 .catch((error) => reject(error));

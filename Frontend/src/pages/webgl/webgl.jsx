@@ -241,7 +241,6 @@ export default function Webgl() {
   function sendUsername () {
     // saveAvatar(tmpData)
     getAvatar("2201016114")
-    console.log(user.auth.username)
     unityContext.send("GameObject", "GetUser", user.auth.username);
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
     
@@ -253,7 +252,6 @@ export default function Webgl() {
   }, [])
 
   useEffect(() => {
-    console.log(user.auth.username)
     unityContext.send("GameObject", "GetUser", user.auth.username);
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
   },[isStart])
