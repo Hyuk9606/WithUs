@@ -161,11 +161,23 @@ export default function Webgl() {
         .on('httpUploadProgress', (evt) => {
             setProgress(Math.round((evt.loaded / evt.total) * 100))
             
-            // 업로드 성공했다고 보내기.
-            unityContext.send("WebGLAPI_Usage", "GetProviderId", user.auth.userId)
-
-            unityContext.send("WebGLAPI_Usage", "GetUrl", className)
-            unityContext.send("WebGLAPI_Usage", "OnMouseDown", pdfPage)
+                // 업로드 성공했다고 보내기.
+                if (className == "class1") {
+                     unityContext.send("class1", "GetProviderId", user.auth.userId)
+    
+                    unityContext.send("class1", "GetUrl", className)
+                    unityContext.send("class1", "StartShare", pdfPage)
+                } else if (className == "class2") {
+                     unityContext.send("class2", "GetProviderId", user.auth.userId)
+    
+                    unityContext.send("class2", "GetUrl", className)
+                    unityContext.send("class2", "StartShare", pdfPage)
+                } else if (className == "class3") {
+                    unityContext.send("class3", "GetProviderId", user.auth.userId)
+    
+                    unityContext.send("class3", "GetUrl", className)
+                    unityContext.send("class3", "StartShare", pdfPage)
+                }
         })
         .send((err) => {
             if (err) console.log(err)
@@ -248,7 +260,9 @@ export default function Webgl() {
 
   useEffect(() => {
     // 사용자 id 보내기
-    unityContext.send("WebGLAPI_Usage", "UserId", user.auth.userId);
+      unityContext.send("class1", "GetUserId", user.auth.userId);
+      unityContext.send("class2", "GetUserId", user.auth.userId);
+      unityContext.send("class3", "GetUserId", user.auth.userId);
   }, [])
 
   useEffect(() => {
