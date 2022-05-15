@@ -97,7 +97,6 @@ export default function Webgl() {
   const [userId, setUserId] = useState('');
   const [audioChange, setAudioChange] = useState(0);
 
-  
   unityContext.on("audioChange" , function () {
     if (audioChange === 0) {
       setAudioChange(1)
@@ -108,6 +107,10 @@ export default function Webgl() {
 
 
   useEffect(() => {
+    // if (user.auth.token === '') {
+    //   alert('로그인을 하셔야 이용가능 합니다.')
+    //   window.location.replace('https://withus.ssafy.io/')
+    // }
     unityContext.on("progress", function (progression) {
       setProgression(progression);
     });
@@ -287,7 +290,7 @@ export default function Webgl() {
           <LoadingText>거의 다 왔어요.</LoadingText>}
         </LoadingContent>
       </LoadingPageContainer>
-      <GameContainer style={{display : isLoaded ? "block" : "none"}}>
+      <GameContainer style={{display : isLoaded ? "block" : "none", width:'80%' , margin:'0 auto 0 auto'}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
