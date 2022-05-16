@@ -25,15 +25,13 @@ export default function Introduce(){
         <>
             <Wrap>
                 <div>
-                    <VideoWrap autoPlay muted loop >
-                        <source src="media/testVideo.mp4" type="video/mp4" />
-                    </VideoWrap>
+                    <img src="/image/building.png" style={{width : '550px', marginRight : '50px', marginLeft : '100px', height: "40vh"}} />
                 </div>
                 <div>
                     <Text>
                         <h1>With US?</h1>
-                        <h3>Unity를 사용한 메타버스 환경</h3>
-                        <h3>발표, 토론, 회의를 할 수 있는 기능</h3>
+                        <h3>With Us는 발표, 강의, 토론 등 비대면 오피스를 제공하는 메타버스 플랫폼입니다.</h3>
+                        <h3>음성채팅, 화이트보드,  PDF 실시간 공유 등의 기능을 제공합니다.</h3>
                     </Text>
                 </div>
             </Wrap>

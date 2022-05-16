@@ -3,7 +3,8 @@ import AboutSidbar from "../../component/about/sidbar";
 import Introduce from "../../component/about/introduce";
 import styled from 'styled-components';
 import Guide from "../../component/about/guide";
-import Preview from "../../component/about/preview";
+import PreviewCharacter from "../../component/about/previewCharacter";
+import PreviewPDF from "../../component/about/previewPDF";
 import Navbar from '../../component/navbar';
 import Footer from '../../component/footer';
 
@@ -20,7 +21,8 @@ export default function About() {
         <Wrap>
             <Introduce />
             <Guide />
-            <Preview />
+            <PreviewCharacter />
+            <PreviewPDF/>
         </Wrap>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');

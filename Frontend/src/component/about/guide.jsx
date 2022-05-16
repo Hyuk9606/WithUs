@@ -26,9 +26,11 @@ export default function Guide(){
                     <StyleImage src={require("../../img/키보드.PNG")} alt="키보드" />
                 </div>
                 <div>
-                    <h1>w,s,d,a : 이동</h1> <br />
-                    <h1>spacebar : 점프</h1> <br />
-                    <h1>마우스좌클릭, e : 상호작용</h1>
+                    <div style={{fontSize : "35px" }}>w,s,d,a : 이동</div > <br />
+                    <div style={{fontSize : "35px" }}>spacebar : 점프</div > <br />
+                    <div style={{fontSize : "35px" }}>t : 마이크 켜기/끄기</div > <br />
+                    <div style={{fontSize : "35px" }}>e : 상호작용 & PDF 렌더링</div >
+                    <div style={{fontSize : "35px" }}>p, o, y : PDF 다음페이지, 이전페이지, 렌더링종료</div > <br />
                 </div>
             </GuideWrap>
         </>

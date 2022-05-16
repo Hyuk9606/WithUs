@@ -22,16 +22,19 @@ export default function LoadingSlider() {
       <div style={{marginTop:'3%', marginBottom: '3%'}}>
         <Slider {...settings}>
           <div>
-            <LoadingImg src='/loading.png' />
+            <LoadingImg src='/image/loadingmain.png' />
           </div>
           <div>
-            <LoadingImg  src='/logo.png' />
+            <LoadingImg  src='/image/loadingsettings.png' />
           </div>
           <div>
-            <LoadingImg  src='/loading.png' />
+            <LoadingImg  src='/image/building.png' />
           </div>
           <div>
-            <LoadingImg  src='/logo2.png' />
+            <LoadingImg  src='/image/loading.png' />
+          </div>
+          <div>
+            <LoadingImg  src='/image/loading2.png' />
           </div>
         </Slider>
       </div>

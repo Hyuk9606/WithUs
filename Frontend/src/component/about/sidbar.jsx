@@ -77,7 +77,7 @@ export default function AboutSidbar(){
             setSelect(text);
         }else{
             window.scrollTo({
-                top: 1800,
+                top: 1440,
                 left: 0,
                 behavior: 'smooth'
             });
@@ -121,10 +121,10 @@ export default function AboutSidbar(){
         if (scroll >= 0 && scroll < 600) {
                 arr[0][0].style.color = "red";
                 ChangeColor(0);
-            } else if (scroll >= 600 && scroll < 1500) {
+            } else if (scroll >= 600 && scroll < 1439) {
                 arr[1][0].style.color = "red";
                 ChangeColor(1);
-            } else if (scroll >= 1500) {
+            } else if (scroll >= 1439) {
                 arr[2][0].style.color = "red";
                 ChangeColor(2);
         }

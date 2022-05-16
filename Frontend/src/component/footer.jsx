@@ -35,7 +35,7 @@ export default function Footer(){
             <Container>
                 <Content>
                   <ContentBox>
-                    <img src="logo2.png" alt="logo" style={{width:"50px", height:"50px", margin:"auto 0 auto 0"}}/>
+                    <img src="/image/logo2.png" alt="logo" style={{width:"70px", height:"50px", margin:"auto 0 auto 0"}}/>
                     <Title>METAMONG</Title>
                   </ContentBox>
                     <CopyWrite>Copyright @ 2022 METAMONG. All Rights Reserved</CopyWrite>

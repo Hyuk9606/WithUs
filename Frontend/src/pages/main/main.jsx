@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../component/navbar';
 import styled from 'styled-components';
-import test from '../../video/test.mp4'
+import mainpagevideo from '../../video/mainpagevideo.mp4'
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import LoginModal from '../../component/loginModal'
@@ -86,7 +86,7 @@ export default function Main() {
           zIndex: -1,
         }}
       >
-        <source src={test} type='video/mp4'/>
+        <source src={mainpagevideo} type='video/mp4'/>
       </video>
       <MainContainer>
         <Title>With Us</Title>

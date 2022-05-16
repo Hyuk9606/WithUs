@@ -95,7 +95,7 @@ export default function Navbar() {
         <>
             <NavBox>
                 <LogoBox>
-                    <LogoImg src='logo.png' onClick={handleHomeClick} />
+                    <LogoImg src='/image/logo.png' onClick={handleHomeClick} />
                 </LogoBox>
                 <RightItem>
                     {user.auth.username == "" ? (null):(

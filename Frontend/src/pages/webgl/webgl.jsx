@@ -196,7 +196,6 @@ export default function Webgl() {
       Authorization: `Bearer ${token}`
     }
     }).then(response => {
-      console.log(response.data.body.avatar);
       unityContext.send("GameObject", "ReceiveAvatar", response.data.body.avatar);
     })
   }
@@ -222,6 +221,9 @@ export default function Webgl() {
   // 게임 처음 접속 로비 세션 입장
   unityContext.on("loadingGame", function(session) {
     SetSessionName(session)
+    unityContext.send("class1", "GetUserId", user.auth.userId);
+    unityContext.send("class2", "GetUserId", user.auth.userId);
+    unityContext.send("class3", "GetUserId", user.auth.userId);
   })
   
   // 포탈 이동시 오픈비두 세션이동
@@ -261,12 +263,12 @@ export default function Webgl() {
     
   }
 
-  useEffect(() => {
-    // 사용자 id 보내기
-      unityContext.send("class1", "GetUserId", user.auth.userId);
-      unityContext.send("class2", "GetUserId", user.auth.userId);
-      unityContext.send("class3", "GetUserId", user.auth.userId);
-  }, [])
+  // useEffect(() => {
+  //   // 사용자 id 보내기
+  //     unityContext.send("class1", "GetUserId", user.auth.userId);
+  //     unityContext.send("class2", "GetUserId", user.auth.userId);
+  //     unityContext.send("class3", "GetUserId", user.auth.userId);
+  // }, [])
 
   useEffect(() => {
     unityContext.send("GameObject", "GetUser", user.auth.username);
@@ -290,7 +292,7 @@ export default function Webgl() {
           <LoadingText>거의 다 왔어요.</LoadingText>}
         </LoadingContent>
       </LoadingPageContainer>
-      <GameContainer style={{display : isLoaded ? "block" : "none", width:'80%' , margin:'0 auto 0 auto'}}>
+      <GameContainer style={{display : isLoaded ? "block" : "none" , margin:'0 auto 0 auto'}}>
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
