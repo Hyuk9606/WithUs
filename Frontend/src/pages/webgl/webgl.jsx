@@ -203,7 +203,7 @@ export default function Webgl() {
 
   unityContext.on("CallAvatar", function (userId) { getAvatar(userId); });
   unityContext.on("CallSaveAvatar",  function (settings) { saveAvatar(settings); })
-
+  unityContext.on("CallUserName", function () { unityContext.send("ChatController","GetUserName", user.auth.username)})
   // 캐릭터 정보 저장하기
   function saveAvatar (build) {
     axios.post(url,build, {headers: {
