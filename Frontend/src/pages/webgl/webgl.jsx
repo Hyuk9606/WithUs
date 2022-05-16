@@ -93,7 +93,6 @@ export default function Webgl() {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [className, setClassName] = useState('');
-  const [pdfPage, setPdfPage] = useState(0);
   const [userId, setUserId] = useState('');
   const [audioChange, setAudioChange] = useState(0);
 
@@ -133,12 +132,11 @@ export default function Webgl() {
 
         var reader = new FileReader();
         reader.readAsBinaryString(e.target.files[0]);
-
+        var pdfFile = e.target.files[0]
         reader.onloadend = function(){
           var count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
-          setPdfPage(count)
+          uploadFile(pdfFile,count)
         }
-        uploadFile(e.target.files[0])
         document.getElementById("inputFile").value = "";
     }else{
         alert("Only jpg/jpeg and png files are allowed!");
@@ -151,7 +149,8 @@ export default function Webgl() {
     document.getElementById("inputFile").click()
   })
   // S3 업로드
-  const uploadFile = (file) => {
+  const uploadFile = (file, count) => {
+    console.log(file, count)
     const fileName = className + '.pdf'
     const params = {
         ACL: 'public-read',
@@ -169,17 +168,17 @@ export default function Webgl() {
                      unityContext.send("class1", "GetProviderId", user.auth.userId)
     
                     unityContext.send("class1", "GetUrl", className)
-                    unityContext.send("class1", "StartShare", pdfPage)
+                    unityContext.send("class1", "StartShare", count)
                 } else if (className == "class2") {
                      unityContext.send("class2", "GetProviderId", user.auth.userId)
     
                     unityContext.send("class2", "GetUrl", className)
-                    unityContext.send("class2", "StartShare", pdfPage)
+                    unityContext.send("class2", "StartShare", count)
                 } else if (className == "class3") {
                     unityContext.send("class3", "GetProviderId", user.auth.userId)
     
                     unityContext.send("class3", "GetUrl", className)
-                    unityContext.send("class3", "StartShare", pdfPage)
+                    unityContext.send("class3", "StartShare", count)
                 }
         })
         .send((err) => {

@@ -83,6 +83,7 @@ export default function Navbar() {
             cancelButtonText: '취소'
         }).then(res => {
             dispatch({type:"LOGOUT"});
+        }).then(res => {
             window.location.replace('https://withus.ssafy.io/')
         })
     }
