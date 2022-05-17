@@ -165,20 +165,17 @@ export default function Webgl() {
             
                 // 업로드 성공했다고 보내기.
                 if (className == "class1") {
-                     unityContext.send("class1", "GetProviderId", user.auth.userId)
-    
-                    unityContext.send("class1", "GetUrl", className)
-                    unityContext.send("class1", "StartShare", count)
+                  unityContext.send("class1", "GetUrl", className)
+                  unityContext.send("class1", "GetProviderId", user.auth.userId)
+                  unityContext.send("class1", "StartShare", count)
                 } else if (className == "class2") {
-                     unityContext.send("class2", "GetProviderId", user.auth.userId)
-    
-                    unityContext.send("class2", "GetUrl", className)
-                    unityContext.send("class2", "StartShare", count)
+                  unityContext.send("class2", "GetUrl", className)
+                  unityContext.send("class2", "GetProviderId", user.auth.userId)
+                  unityContext.send("class2", "StartShare", count)
                 } else if (className == "class3") {
-                    unityContext.send("class3", "GetProviderId", user.auth.userId)
-    
-                    unityContext.send("class3", "GetUrl", className)
-                    unityContext.send("class3", "StartShare", count)
+                  unityContext.send("class3", "GetUrl", className)
+                  unityContext.send("class3", "GetProviderId", user.auth.userId)
+                  unityContext.send("class3", "StartShare", count)
                 }
         })
         .send((err) => {
