@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
 import UserModel from './models/user-model'
 
-const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
+const OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':8443';
 const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
 var localUser = new UserModel();

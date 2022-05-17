@@ -184,10 +184,13 @@ export default function Webgl() {
         .send((err) => {
             if (err) console.log(err)
         })
-        
-
 }
 
+
+  // 웹뷰 태그 확인하기
+  function findWebView () {
+    console.lod(document.getElementsByTagName('iframe'))
+  }
 
   // 캐릭터 정보 받아오기
   function getAvatar (userId) {
@@ -247,6 +250,18 @@ export default function Webgl() {
   unityContext.on("goToClass3", function(session) {
     SetSessionName(session)
   })
+  // 미팅룸1
+  unityContext.on("goToMR1", function(session) {
+    SetSessionName(session)
+  })
+  // 미팅룸2
+  unityContext.on("goToMR2", function(session) {
+    SetSessionName(session)
+  })
+  // 미팅룸3
+  unityContext.on("goToMR3", function(session) {
+    SetSessionName(session)
+  })
 
 
 
@@ -304,6 +319,7 @@ export default function Webgl() {
           />
         </div>
       </GameContainer>
+      <button onClick={() => findWebView()}>test</button>
       <style>
         {`@-webkit-keyframes hue {
           from {
