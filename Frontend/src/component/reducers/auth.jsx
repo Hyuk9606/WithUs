@@ -6,6 +6,7 @@ const initUser = {
     email : '',
     userId : '',
     isLogined : false,
+    isSession : false,
 }
 
 const logoutUser = {
@@ -30,6 +31,14 @@ export default function auth(state = initUser, action) {
         case "LOGOUT":
             state = logoutUser
             return { ...state, quote: action.payload };
+        
+        case "JOINSESSION":
+            state.isSession = true;
+            return {...state, quote: action.payload};
+
+        case "LEAVESESSION":
+            state.isSession = false;
+            return {...state, quote: action.payload}
         
         default:
             return state;

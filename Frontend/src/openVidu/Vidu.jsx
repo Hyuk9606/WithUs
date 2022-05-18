@@ -193,6 +193,10 @@ class Vidu extends Component {
                             this.setState({isMuted: true})
                             this.state.mainStreamManager.publishAudio(true);
                         })
+                        .then((res) => {
+                            console.log('test')
+                            this.props.isSession();
+                        })
                         .catch((error) => {
                             console.log('There was an error connecting to the session:', error.code, error.message);
                         });

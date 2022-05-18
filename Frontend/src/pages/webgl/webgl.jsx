@@ -96,6 +96,7 @@ export default function Webgl() {
   const [userId, setUserId] = useState('');
   const [audioChange, setAudioChange] = useState(0);
 
+  const [inSession, SetInSession] = useState(false);
   unityContext.on("audioChange" , function () {
     if (audioChange === 0) {
       setAudioChange(1)
@@ -184,11 +185,6 @@ export default function Webgl() {
 }
 
 
-  // 웹뷰 태그 확인하기
-  function findWebView () {
-    console.lod(document.getElementsByTagName('iframe'))
-  }
-
   // 캐릭터 정보 받아오기
   function getAvatar (userId) {
     axios.get(url+"/"+userId, {headers: {
@@ -227,38 +223,10 @@ export default function Webgl() {
   
   // 포탈 이동시 오픈비두 세션이동
 
-  // 로비
-  unityContext.on("goToLobby", function(session) {
+  unityContext.on("portal", function(session) {
     SetSessionName(session);
   })
-  // 로비 2층
-  unityContext.on("goToLobby2", function(session) {
-    SetSessionName(session)
-  })
-  // 강의실1
-  unityContext.on("goToClass1", function(session) {
-    SetSessionName(session)
-  })
-  // 강의실2
-  unityContext.on("goToClass2", function(session) {
-    SetSessionName(session)
-  })
-  // 강의실3
-  unityContext.on("goToClass3", function(session) {
-    SetSessionName(session)
-  })
-  // 미팅룸1
-  unityContext.on("goToMR1", function(session) {
-    SetSessionName(session)
-  })
-  // 미팅룸2
-  unityContext.on("goToMR2", function(session) {
-    SetSessionName(session)
-  })
-  // 미팅룸3
-  unityContext.on("goToMR3", function(session) {
-    SetSessionName(session)
-  })
+
 
 
 
@@ -286,13 +254,17 @@ export default function Webgl() {
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
   },[isStart])
 
+  function isSession () {
+    SetInSession(true)
+    console.log('왔음')
+  }
 
 
   return (
     <>
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
-      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange}/>
+      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange} isSession={isSession}/>
       <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
         <LoadingContent>
           {/* <Title>With Us</Title> */}
@@ -316,7 +288,6 @@ export default function Webgl() {
           />
         </div>
       </GameContainer>
-      <button onClick={() => findWebView()}>test</button>
       <style>
         {`@-webkit-keyframes hue {
           from {

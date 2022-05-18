@@ -56,8 +56,9 @@ export default function Main() {
   const dispatch = useDispatch()
   const user = useSelector(state => state)
   useEffect(() => {
+    dispatch({type:"LEAVESESSION"})
     setIsLogined(user.auth.isLogined)
-  })
+  },[])
 
   const clickbutton = () => {
     if (isLogined === false) {

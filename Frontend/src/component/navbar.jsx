@@ -53,8 +53,6 @@ export default function Navbar() {
     const dispatch = useDispatch()
     const user = useSelector(state => state)
 
-    let navigate = useNavigate()
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
