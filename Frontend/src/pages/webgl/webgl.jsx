@@ -96,14 +96,6 @@ export default function Webgl() {
   const [userId, setUserId] = useState('');
   const [audioChange, setAudioChange] = useState(0);
 
-  const [inSession, SetInSession] = useState(false);
-  unityContext.on("audioChange" , function () {
-    if (audioChange === 0) {
-      setAudioChange(1)
-    } else if (audioChange === 1) {
-      setAudioChange(0)
-    }
-  })
 
 
   useEffect(() => {
@@ -151,7 +143,6 @@ export default function Webgl() {
   })
   // S3 업로드
   const uploadFile = (file, count) => {
-    console.log(file, count)
     const fileName = className + '.pdf'
     const params = {
         ACL: 'public-read',
@@ -183,7 +174,6 @@ export default function Webgl() {
             if (err) console.log(err)
         })
 }
-
 
   // 캐릭터 정보 받아오기
   function getAvatar (userId) {
@@ -254,17 +244,23 @@ export default function Webgl() {
     unityContext.send("GameObject", "GetUserId", user.auth.userId);
   },[isStart])
 
-  function isSession () {
-    SetInSession(true)
-    console.log('왔음')
+  function micChangeError () {
+    unityContext.send("Canvas", "MicroFail");
   }
 
+  unityContext.on("audioChange" , function () {
+    if (audioChange === 0) {
+      setAudioChange(1)
+    } else if (audioChange === 1) {
+      setAudioChange(0)
+    }
+})
 
   return (
     <>
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
-      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange} isSession={isSession}/>
+      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange} micChangeError={micChangeError}/>
       <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
         <LoadingContent>
           {/* <Title>With Us</Title> */}

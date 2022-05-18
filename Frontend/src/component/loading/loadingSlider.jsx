@@ -29,10 +29,10 @@ export default function LoadingSlider() {
             <LoadingImg  src='/image/loadingsettings.png' />
           </div>
           <div>
-            <LoadingImg  src='/image/building.png' />
+            <LoadingImg  src='/image/loading1.png' />
           </div>
           <div>
-            <LoadingImg  src='/image/loading.png' />
+            <LoadingImg  src='/image/PDF.png' />
           </div>
           <div>
             <LoadingImg  src='/image/loading2.png' />

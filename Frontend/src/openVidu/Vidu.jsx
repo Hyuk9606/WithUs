@@ -79,19 +79,25 @@ class Vidu extends Component {
     }
 
     micStatusChanage () {
-        if(this.state.isMuted === true){
-            this.setState({isMuted: false})
-            this.state.mainStreamManager.publishAudio(true);
-        }else {
-            this.setState({isMuted: true})
-            this.state.mainStreamManager.publishAudio(false);
-        }
+        try {
+            if(this.state.isMuted === true){
+                this.setState({isMuted: false})
+                this.state.mainStreamManager.publishAudio(true);
+            }else {
+                this.setState({isMuted: true})
+                this.state.mainStreamManager.publishAudio(false);
+            }
+    
+            let data = { isAudioActive: this.state.isMuted }
+            const signalOptions = {
+                data: JSON.stringify(data),
+                type: 'userChanged',
+            };
 
-        let data = { isAudioActive: this.state.isMuted }
-        const signalOptions = {
-            data: JSON.stringify(data),
-            type: 'userChanged',
-        };
+        }
+        catch (error) {
+            this.props.micChangeError()
+        }
 
     }
 
@@ -192,10 +198,6 @@ class Vidu extends Component {
                             });
                             this.setState({isMuted: true})
                             this.state.mainStreamManager.publishAudio(true);
-                        })
-                        .then((res) => {
-                            console.log('test')
-                            this.props.isSession();
                         })
                         .catch((error) => {
                             console.log('There was an error connecting to the session:', error.code, error.message);
