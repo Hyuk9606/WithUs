@@ -9,7 +9,6 @@ const Wrap = styled.div`
       align-items: center;
       text-align: center;
       flex-wrap: wrap;
-      background-color: #f7f7f7;
     `
 const Text = styled.div`
       text-align: center;
@@ -25,7 +24,7 @@ export default function Introduce(){
         <>
             <Wrap>
                 <div>
-                    <img src="/image/building.png" style={{width : '550px', marginRight : '50px', marginLeft : '100px', height: "40vh"}} />
+                    <img src="/image/building.png" style={{width : '500px', marginRight : '50px', marginLeft : '120px', height: "40vh"}} />
                 </div>
                 <div>
                     <Text>

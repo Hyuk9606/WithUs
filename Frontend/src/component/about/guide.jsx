@@ -9,12 +9,14 @@ const GuideWrap = styled.div`
       text-align: center;
       align-items: center;
       justify-content: center;
+      background-color: #f7f7f7;
     `
 const Image = styled.image`
       border-radius: 100px;
     `
 const StyleImage = styled.img`
       border-radius: 15px;
+      margin-left: 120px;
     `
 
 export default function Guide(){
@@ -23,14 +25,7 @@ export default function Guide(){
         <>
             <GuideWrap>
                 <div>
-                    <StyleImage src={require("../../img/키보드.PNG")} alt="키보드" />
-                </div>
-                <div>
-                    <div style={{fontSize : "35px" }}>w,s,d,a : 이동</div > <br />
-                    <div style={{fontSize : "35px" }}>spacebar : 점프</div > <br />
-                    <div style={{fontSize : "35px" }}>t : 마이크 켜기/끄기</div > <br />
-                    <div style={{fontSize : "35px" }}>e : 상호작용 & PDF 렌더링</div >
-                    <div style={{fontSize : "35px" }}>p, o, y : PDF 다음페이지, 이전페이지, 렌더링종료</div > <br />
+                    <StyleImage src='/image/조작법.png' alt="키보드" />
                 </div>
             </GuideWrap>
         </>

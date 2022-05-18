@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import characterVideo from '../../video/characterCustom.mp4'
 
 const Wrap = styled.div`
       width: 100%;
@@ -9,7 +10,6 @@ const Wrap = styled.div`
       align-items: center;
       display: flex;
       flex-wrap: wrap;
-      background-color: #f7f7f7;
     `
 
 export default function PreviewCharacter(){
@@ -17,10 +17,21 @@ export default function PreviewCharacter(){
     return(
         <>
             <Wrap>
-                <img src="/image/character.png" style={{width : '600px', marginRight : '50px', height: "40vh"}}/>
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    style={{
+                        width : '600px', 
+                        marginLeft : '70px', 
+                        height: "50vh"
+                    }}
+                >
+                    <source src={characterVideo} type='video/mp4'/>
+                </video>
                 <div>
-                    <div style={{fontSize:'40px'}}>나만의 캐릭터를</div> <br />
-                    <div style={{fontSize:'40px'}}>만들어보세요!</div>
+                    <div style={{fontSize:'40px', marginLeft: "60px"}}>나만의 캐릭터를</div> <br />
+                    <div style={{fontSize:'40px', marginLeft: "60px"}}>만들어보세요!</div>
                 </div>
             </Wrap>
         </>

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Guide from "../../component/about/guide";
 import PreviewCharacter from "../../component/about/previewCharacter";
 import PreviewPDF from "../../component/about/previewPDF";
+import PreviewWhiteBoard from "../../component/about/previewWhiteBoard";
 import Navbar from '../../component/navbar';
 import Footer from '../../component/footer';
 
@@ -23,6 +24,7 @@ export default function About() {
             <Guide />
             <PreviewCharacter />
             <PreviewPDF/>
+            <PreviewWhiteBoard />
         </Wrap>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
