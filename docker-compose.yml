@@ -5,8 +5,8 @@ services:
     image: skdltm117/withus-backend:0.5 # 실행할 이미지
     environment:
       SPRING_DATASOURCE_URL: "jdbc:mysql://withus-mysql:3306/withus?useUnicode=yes&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Seoul"
-      SPRING_DATASOURCE_USERNAME: "root"
-      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_DATASOURCE_USERNAME: "withus"
+      SPRING_DATASOURCE_PASSWORD: "withdbusconn"
       SERVER_PORT: "8080"
     ports:
       - 8080:8080
@@ -25,8 +25,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "withus"
-      MYSQL_USER: "ssafy"
-      MYSQL_PASSWORD: "1234"
+      MYSQL_USER: "withus"
+      MYSQL_PASSWORD: "withdbusconn"
     command:
       [
           "--character-set-server=utf8mb4",
