@@ -170,7 +170,13 @@ class Vidu extends Component {
                         .then(async () => {
                             var devices = await this.OV.getDevices();
                             var videoDevices = devices.filter(device => device.kind === 'videoinput');
-
+                            if (videoDevices[0].deviceId === '') {
+                                // 연결 안될 때
+                                this.props.notInSession()
+                            } else{
+                                // 연결 될 때
+                                this.props.inSession();
+                            }
                             // --- 5) Get your own camera stream ---
 
                             // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
@@ -212,9 +218,10 @@ class Vidu extends Component {
         // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
         const mySession = this.state.session;
-
+        this.props.notInSession();
         if (mySession) {
             mySession.disconnect();
+            
         }
 
         // Empty all properties...

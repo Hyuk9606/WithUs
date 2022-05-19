@@ -247,12 +247,22 @@ export default function Webgl() {
   function micChangeError () {
     unityContext.send("Canvas", "MicroFail");
   }
+  const [isInSession, setIsInSession] = useState(false);
 
+  function notInSession () {
+    setIsInSession(false);
+  }
+  function inSession () {
+    setIsInSession(true);
+  }
   unityContext.on("audioChange" , function () {
     if (audioChange === 0) {
       setAudioChange(1)
     } else if (audioChange === 1) {
       setAudioChange(0)
+    }
+    if (isInSession === false) {
+      unityContext.send("Canvas", "MicroFail");
     }
 })
 
@@ -260,7 +270,7 @@ export default function Webgl() {
     <>
       <Navbar />
       <input id="inputFile" type="file" accept=".pdf" style={{display:'none'}} onChange={handleFileInput}/>
-      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange} micChangeError={micChangeError}/>
+      <Vidu sessionName={sessionName} myUserName={userId} audioChange={audioChange} micChangeError={micChangeError} notInSession={notInSession} inSession={inSession}/>
       <LoadingPageContainer style={{display : isLoaded ? "none" : "block"}}>
         <LoadingContent>
           {/* <Title>With Us</Title> */}
@@ -275,7 +285,7 @@ export default function Webgl() {
         <div id='unity-container'>
           <Unity unityContext={unityContext} 
             style={{
-              marginTop:"70px",
+              marginTop : '70px',
               height: "91vh",
               width: "100%",
               justifySelf: 'center',
