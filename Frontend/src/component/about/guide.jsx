@@ -25,7 +25,7 @@ export default function Guide(){
         <>
             <GuideWrap>
                 <div>
-                    <StyleImage src='/image/조작법.png' alt="키보드" />
+                    <StyleImage src='/image/manual.png' alt="키보드" />
                 </div>
             </GuideWrap>
         </>
