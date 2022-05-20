@@ -2,7 +2,7 @@ spring:
   profiles:
     group:
       dev: common, develop
-#      prod: common, prod
+      prod: common, production
 ---
 spring:
   config:
@@ -36,8 +36,19 @@ spring:
 #        max-file-size: 5MB
 #        max-request-size: 5MB
 #        enabled: true
+app:
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth/redirect
 
+cors:
+  allowed-origins: 'https://localhost:3000'
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: '*'
+  max-age: 3600
 ---
+
+
 spring:
   config:
     activate:
@@ -80,6 +91,17 @@ spring:
             - profile_image
             - account_email
           clientName: Kakao
+        naver:
+          clientId: '4027eCw7q7GFWvcQs3Cp'
+          clientSecret: 'QyAmvEwIm8'
+          clientAuthenticationMethod: post
+          authorizationGrantType: authorization_code
+          redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+          scope:
+            - nickname
+            - email
+            - profile_image
+          clientName: Naver
       # Provider ??
       provider:
         kakao:
@@ -87,13 +109,12 @@ spring:
           tokenUri: https://kauth.kakao.com/oauth/token
           userInfoUri: https://kapi.kakao.com/v2/user/me
           userNameAttribute: id
-
+        naver:
+          authorizationUri: https://nid.naver.com/oauth2.0/authorize
+          tokenUri: https://nid.naver.com/oauth2.0/token
+          userInfoUri: https://openapi.naver.com/v1/nid/me
+          userNameAttribute: response
 # cors ??
-cors:
-  allowed-origins: 'http://localhost:3000'
-  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
-  allowed-headers: '*'
-  max-age: 3600
 
 # jwt secret key ??
 jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOdswithus'
@@ -104,9 +125,7 @@ app:
     tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
     tokenExpiry: 180000000
     refreshTokenExpiry: 604800000
-  oauth2:
-    authorizedRedirectUris:
-      - http://localhost:3000/oauth/redirect
+
 springdoc:
   version: '@project.version@'
   api-docs:
@@ -126,3 +145,38 @@ springdoc:
 
 
 ---
+server:
+  ssl :
+    key-store: classpath:keystore.p12
+    key-store-password: ssafywithus
+    key-store-type: PKCS12
+spring:
+  config:
+    activate:
+      on-profile: production
+  # ??? ?? ??
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://withus.ssafy.io:3306/withus?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    hikari:
+      pool-name: jpa-hikari-pool
+      maximum-pool-size: 5
+      jdbc-url: ${spring.datasource.url}
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      data-source-properties:
+        rewriteBatchedStatements: true
+
+app:
+  oauth2:
+    authorizedRedirectUris:
+      - https://withus.ssafy.io/oauth/redirect
+
+cors:
+  allowed-origins: 'https://withus.ssafy.io'
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: '*'
+  max-age: 3600
