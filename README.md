@@ -4,7 +4,7 @@
 
 WithUs는 우리와 함께라는 뜻으로 웹 기반 가상환경에서 자신의 캐릭터로 간편히 접속할 수 있고 토론, 발표, 협업을 위한 공간을 제공하는 메타버스 플랫폼입니다.
 
-![home](./images/home.png)
+![home](./images/home.PNG)
 
 
 
@@ -287,8 +287,8 @@ $ npm start
 
 ## jira
 
-![jira1](./images/jira1.png)
+![jira1](./images/jira1.PNG)
 
 ## 팀원소개
 
-![member](./images/member.png)
+![member](./images/member.PNG)
