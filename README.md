@@ -4,37 +4,31 @@
 
 WithUs는 우리와 함께라는 뜻으로 웹 기반 가상환경에서 자신의 캐릭터로 간편히 접속할 수 있고 토론, 발표, 협업을 위한 공간을 제공하는 메타버스 플랫폼입니다.
 
+![home](./images/home.png)
 
+
+
+## 📅 Development ( 2022-04-11 ~ 2022-05-27 )
 
 ## 주요기능
 
-1. 음성, 채팅
-   - 다른 사용자와 소통 할 수 있는 음성 채팅 기능이 있습니다.
-2. PDF Rendering, WebView
-   - 발표를 위해 발표자료를 올리고 페이지를 넘기는 기능이 있습니다.
-   - 협업을 위한 eraser page, 각종 오락거리 페이지를 보여지게 하는 기능이 있습니다.
-3. 캐릭터 커스터마이징
-   - 자신만의 캐릭터를 만들고 개성을 부여하는 캐릭터 커마 기능이 있습니다.
-
-4. Multiplay
-   - 유니티 내에 Photon을 이용하여 멀티플레이가 가능하게 하였습니다.
-   - 같은 서버에 있는 사람들과 채팅을 할 수 있습니다.
-5. 포탈
-   - 포탈을 이용하여 음성채팅 세션을 변경하며 독립적인 공간을 제공합니다.
+| 구분 | 기능                   | 설명                                                         |
+| :--: | :--------------------- | :----------------------------------------------------------- |
+|  1   | 음성 및 채팅           | 다른 사용자와 소통 할 수 있는 음성, 채팅 기능 제공           |
+|  2   | PDF Rendering, WebView | 발표를 위해 발표자료를 올리고 페이지를 넘기는 기능 제공                                                                                 협업을 위한 eraser page, 각종 오락거리 페이지를 보여지게 하는 기능 제공 |
+|  3   | 캐릭터 커스터마이징    | 자신만의 캐릭터를 만들고 개성을 부여하는 캐릭터 커마 기능 제공 |
+|  4   | Multiplay              | Photon을 이용한 멀티 기능, 닉네임, 캐릭터제어 및 애니메이션 등 동기화 처리가 가능함 |
+|  5   | 포탈                   | 포탈을 이용하여 독립적인 공간과 음성채팅 세션을 제공         |
 
 
 
-## 아키텍쳐
+## 아키텍쳐 수정요청(webgl)
 
-![arcitecture](/uploads/690e41eb2de5dbef99bb2a8a223e18bd/arcitecture.png)
-
-
+![arcitecture](./images/arcitecture.png)
 
 
 
-## 설치
-
-#### 버전 정보
+## ⚙ 개발 환경
 
 ```
 Backend
@@ -279,25 +273,22 @@ $ npm start
 
 ## ERD
 
-![ERD](/uploads/60f3f0a3f897de823d5f974093d764ac/ERD.png)
+![ERD](./images//ERD.png)
 
 
 
+## PM 관리
 
+### Unity Commit History
 
-## Unity Commit History
+![unity_branch1](./images//unity_branch6.png)
 
-![unity_branch1](/uploads/caeef6b12db8bc2b667fc942c39a4979/unity_branch1.png)
+![unity_branch2](./images/unity_branch5.png)
 
-![unity_branch2](/uploads/2aa753fe6e679f9d04d04a816984fb0e/unity_branch2.png)
+## jira
 
-![unity_branch3](/uploads/bd0d81b63b59a95c264c41f0848e7f19/unity_branch3.png)
+![jira1](./images/jira1.png)
 
-![unity_branch4](/uploads/10036d02b02a2983f1bc5dab30ceb23b/unity_branch4.png)
+## 팀원소개
 
-![unity_branch5](/uploads/9c4cb6df536c70dc8785b0ee9cb22a0d/unity_branch5.png)
-
-![unity_branch6](/uploads/b12bed89bf935a41fb2c18187053b5dc/unity_branch6.png)
-
-
-
+![member](./images/member.png)
