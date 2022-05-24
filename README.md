@@ -273,7 +273,7 @@ $ npm start
 
 ## ERD
 
-![ERD](./images//ERD.png)
+![ERD](./images/ERD.png)
 
 
 
@@ -281,7 +281,7 @@ $ npm start
 
 ### Unity Commit History
 
-![unity_branch1](./images//unity_branch6.png)
+![unity_branch1](./images/unity_branch6.png)
 
 ![unity_branch2](./images/unity_branch5.png)
 
