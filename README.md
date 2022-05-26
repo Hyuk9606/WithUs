@@ -47,7 +47,7 @@ MobaXterm
 
 ## 아키텍쳐
 
-![arcitecture](./images/arcitecture.PNG)
+![arcitecture](/uploads/690e41eb2de5dbef99bb2a8a223e18bd/arcitecture.png)
 
 
 
