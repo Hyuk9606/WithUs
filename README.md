@@ -4,17 +4,30 @@
 
 WithUs는 우리와 함께라는 뜻으로 웹 기반 가상환경에서 자신의 캐릭터로 간편히 접속할 수 있고 토론, 발표, 협업을 위한 공간을 제공하는 메타버스 플랫폼입니다.
 
-![home](./images/home.PNG)
+- 개발 기간: 2022-04-11 ~ 2022-05-27 (총 6주)
+- 팀명 : 메타몽
 
+![intro](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\Intro.gif)
 
+---
 
-## 📅 Development ( 2022-04-11 ~ 2022-05-27 )
+### 🌉개발배경
 
-## 팀원소개
+Zoom, Webex 등의 화상 미팅 프로그램을 이용하여 강의를 들으면서 보니 이마만 나오거나, 가상배경만 나오는 교육생들이 몇몇 보였습니다.
+
+또한, 편한 공간에서 오랫동안 강의를 듣고 있다보니 집중력이 흐트러지고 지루해하는 것을 느꼈습니다.
+
+그래서 좀 더 몰입감있고 직접 참여하는듯 한 생동감을 제공하기 위해 최근 급성장 하고 있는 메타버스라는 트렌드를 적용하여 강의, 발표, 토론을 진행할 수 있는 플랫폼을 만들게 되었습니다.
+
+------
+
+### 👨‍👨‍👦‍👦팀원소개
 
 ![member](./images/member.PNG)
 
-## ⚙ 기술 스택 및 개발 환경
+---
+
+### ⚙ 기술 스택 및 개발 환경
 
 ```
 Backend
@@ -43,23 +56,44 @@ Visual Studio Code
 MobaXterm
 ```
 
+---
 
+## 👨‍💻주요기능
 
-## 아키텍쳐
+### 1. 음성 채팅
 
-![arcitecture](/uploads/690e41eb2de5dbef99bb2a8a223e18bd/arcitecture.png)
+- 다른 사용자와 소통 할 수 있도록 각각의 공간에서 별도의 음성채널을 제공합니다.
 
+### 2. 캐릭터 커스터마이징
 
+- 자신만의 캐릭터를 만들고 개성을 부여하는 캐릭터 커스터마이징 기능이 있습니다.
 
-## 주요기능
+![Character.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\Character.gif)
 
-| 구분 | 기능                   | 설명                                                         |
-| :--: | :--------------------- | :----------------------------------------------------------- |
-|  1   | 음성 및 채팅           | 다른 사용자와 소통 할 수 있는 음성, 채팅 기능 제공           |
-|  2   | PDF Rendering, WebView | 발표를 위해 발표자료를 올리고 페이지를 넘기는 기능 제공                                                                                 협업을 위한 eraser page, 각종 오락거리 페이지를 보여지게 하는 기능 제공 |
-|  3   | 캐릭터 커스터마이징    | 자신만의 캐릭터를 만들고 개성을 부여하는 캐릭터 커마 기능 제공 |
-|  4   | Multiplay              | Photon을 이용한 멀티 기능, 닉네임, 캐릭터제어 및 애니메이션 등 동기화 처리가 가능함 |
-|  5   | 포탈                   | 포탈을 이용하여 독립적인 공간과 음성채팅 세션을 제공         |
+### 3. PDF Rendering
+
+- 발표를 위해 PDF로 만들어진 자료를 업로드하고 렌더링하며, 제어할 수 있습니다.
+
+![PDF_Render.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\PDF_Render.gif)
+
+### 4. WebView
+
+- 협업을 위한 화이트보드, 휴식을 위한 몇몇 게임 페이지를 보여지게 하는 기능이 있습니다.
+
+![webview.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\webview.gif)
+
+### 5. 멀티플레이
+
+- 유니티 내에서 발표, 토론, 강의 등을 진행할 수 있도록 멀티플레이를 지원합니다.
+- 접속해 있는 모든 유저들과 채팅을 할 수 있습니다.
+
+![multy.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\multy.gif)
+
+## 
+
+### 🔧아키텍쳐
+
+![arcitecture](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\arcitecture.png)
 
 
 
@@ -290,6 +324,14 @@ $ npm start
 ![unity_branch1](./images/unity_branch6.png)
 
 ![unity_branch2](./images/unity_branch5.png)
+
+![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch4.png)
+
+![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch3.png)
+
+![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch2.png)
+
+![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch1.png)
 
 ## jira
 
