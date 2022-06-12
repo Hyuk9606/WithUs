@@ -1,5 +1,13 @@
-# Unity Scripy
+## Unity Commit History
 
-Unity 프로젝트를 진행하며 작성, 수정한 스크립트입니다.
+![unity_branch1](..\images\unity_branch6.png)
 
-프로젝트의 실행과는 무관합니다.
+![unity_branch2](..\images\unity_branch5.png)
+
+![](..\images\unity_branch4.png)
+
+![](..\images\unity_branch3.png)
+
+![](../images/unity_branch2.png)
+
+![](..\images\unity_branch1.png)

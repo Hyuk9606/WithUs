@@ -7,7 +7,7 @@ WithUs는 우리와 함께라는 뜻으로 웹 기반 가상환경에서 자신�
 - 개발 기간: 2022-04-11 ~ 2022-05-27 (총 6주)
 - 팀명 : 메타몽
 
-![intro](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\Intro.gif)
+![intro](.\images\Intro.gif)
 
 ---
 
@@ -68,38 +68,38 @@ MobaXterm
 
 - 자신만의 캐릭터를 만들고 개성을 부여하는 캐릭터 커스터마이징 기능이 있습니다.
 
-![Character.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\Character.gif)
+![Character.gif](.\images\Character.gif)
 
 ### 3. PDF Rendering
 
 - 발표를 위해 PDF로 만들어진 자료를 업로드하고 렌더링하며, 제어할 수 있습니다.
 
-![PDF_Render.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\PDF_Render.gif)
+![PDF_Render.gif](.\images\PDF_Render.gif)
 
 ### 4. WebView
 
 - 협업을 위한 화이트보드, 휴식을 위한 몇몇 게임 페이지를 보여지게 하는 기능이 있습니다.
 
-![webview.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\webview.gif)
+![webview.gif](.\images\webview.gif)
 
 ### 5. 멀티플레이
 
 - 유니티 내에서 발표, 토론, 강의 등을 진행할 수 있도록 멀티플레이를 지원합니다.
 - 접속해 있는 모든 유저들과 채팅을 할 수 있습니다.
 
-![multy.gif](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\multy.gif)
+![multy.gif](.\images\multy.gif)
 
-## 
+---
 
 ### 🔧아키텍쳐
 
-![arcitecture](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\arcitecture.png)
+![arcitecture](.\images\arcitecture.png)
 
 
 
 
 
-### 실행 방법
+## 실행 방법
 
 #### nginx 설정
 
@@ -317,23 +317,21 @@ $ npm start
 
 
 
-## Project Management
+## ⚙Project Management
 
-### Unity Commit History
+### [Unity Commit History](./Unity/README.md)
 
-![unity_branch1](./images/unity_branch6.png)
+### JIRA - BurnDown Chart
 
-![unity_branch2](./images/unity_branch5.png)
+![jira1](./images/jira1.png)
 
-![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch4.png)
+![jira2](./images/jira2.png)
 
-![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch3.png)
 
-![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch2.png)
 
-![](C:\Users\Lim Hyuk\Desktop\Self-control\S06P31C103\images\unity_branch1.png)
+![jira3](./images/jira3.png)
 
-## jira
+![jira4](./images/jira4.png)
 
-![jira1](./images/jira1.PNG)
+![jira5](./images/jira5.png)
 
