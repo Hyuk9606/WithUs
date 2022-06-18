@@ -31,7 +31,7 @@ Zoom, Webex 등의 화상 미팅 프로그램을 이용하여 강의를 들으�
 
 ```
 Backend
-JVM zulu-11
+JDK zulu-11
 
 DB
 Mysql 8.0.28
